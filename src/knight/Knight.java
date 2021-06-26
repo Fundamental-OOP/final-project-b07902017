@@ -5,6 +5,7 @@ import fsm.ImageRenderer;
 import fsm.State;
 import fsm.WaitingPerFrame;
 import model.Direction;
+import model.Sprite;
 import model.HealthPointSprite;
 import model.SpriteShape;
 
@@ -21,6 +22,8 @@ import static utils.ImageStateUtils.imageStatesFromFolder;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Knight extends HealthPointSprite {
+    private final int dropping_rate = 3;
+
     public static final int KNIGHT_HP = 500;
     private final SpriteShape shape;
     private final FiniteStateMachine fsm;
@@ -35,8 +38,11 @@ public class Knight extends HealthPointSprite {
         super(KNIGHT_HP);
         this.damage = damage;
         this.location = location;
+        // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
+        // shape = new SpriteShape(new Dimension(146, 176),
+        //         new Dimension(33, 38), new Dimension(66, 105));
         shape = new SpriteShape(new Dimension(146, 176),
-                new Dimension(33, 38), new Dimension(66, 105));
+                new Dimension(0, 0), new Dimension(146, 176));
         fsm = new FiniteStateMachine();
 
         ImageRenderer imageRenderer = new KnightImageRenderer(this);
@@ -81,6 +87,8 @@ public class Knight extends HealthPointSprite {
 
     public void update() {
         fsm.update();
+        this.location.translate(0, dropping_rate);
+
     }
 
     @Override
@@ -103,6 +111,10 @@ public class Knight extends HealthPointSprite {
         return new Rectangle(location, shape.size);
     }
 
+    public Dimension getSize(){
+        return shape.size;
+    }
+
     @Override
     public Dimension getBodyOffset() {
         return shape.bodyOffset;
@@ -112,6 +124,23 @@ public class Knight extends HealthPointSprite {
     public Dimension getBodySize() {
         return shape.bodySize;
     }
+
+    @Override
+    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
+        System.out.printf("collision22\n");
+        if (from instanceof Knight && to instanceof Knight) {
+            Rectangle body = from.getBody();
+            int offsetLeft = to.getX() - body.x;
+            int offsetRight = body.x + body.width - to.getX();
+            if (offsetLeft < 0) {
+                to.setLocation(new Point(to.getX() - (to.getRange().width + offsetLeft) / 3, to.getY()));
+            } else {
+                to.setLocation(new Point(to.getX() + offsetRight / 3, to.getY()));
+            }
+
+        }
+    }
+
 
 
 }

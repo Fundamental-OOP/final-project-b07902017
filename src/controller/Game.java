@@ -13,13 +13,13 @@ import model.Sprite;
 public class Game extends GameLoop {
     // private final Knight p1;
     // private final Knight p2;
-    private ArrayList<Knight> knights;
+    private ArrayList<Sprite> knights;
     private final World world;
 
     public Game(World world, ArrayList<Sprite> knights) {
-        this.knights = new ArrayList<Knight>();
+        this.knights = new ArrayList<Sprite>();
         for (int i = 0; i < knights.size(); i++)
-            this.knights.add((Knight) knights.get(i));
+            this.knights.add(knights.get(i));
 
         this.world = world;
     }
@@ -48,7 +48,7 @@ public class Game extends GameLoop {
 
     public Knight getPlayer(int playerNumber) {
         // return playerNumber == 1 ? knights.get(0) : knights.get(1);
-        return knights.get(playerNumber);
+        return (Knight) knights.get(playerNumber);
     }
 
     @Override

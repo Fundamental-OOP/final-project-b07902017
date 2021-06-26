@@ -11,7 +11,7 @@ public enum Direction {
     public Dimension translate() {
         switch (this) {
             case UP:
-                return new Dimension(0, -6);
+                return new Dimension(0, -30);
             case DOWN:
                 return new Dimension(0, 6);
             case LEFT:

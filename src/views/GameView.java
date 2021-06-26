@@ -156,7 +156,7 @@ public class GameView extends JFrame {
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
             // Now, let's paint
-            g.setColor(Color.WHITE); // paint background with all white
+            g.setColor(Color.BLUE); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
 
             world.render(g); // ask the world to paint itself and paint the sprites on the canvas

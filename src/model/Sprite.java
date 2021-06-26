@@ -71,4 +71,6 @@ public abstract class Sprite {
     public boolean isAlive() {
         return world != null;
     }
+
+    public abstract void collisionHandle(Point originalLocation, Sprite from, Sprite to);
 }
