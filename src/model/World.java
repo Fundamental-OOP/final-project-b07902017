@@ -53,7 +53,7 @@ public class World {
             stairs.remove(0);
         }
         while(stairs.size() < 10) {
-            int dy = 200 + r1.nextInt(200);
+            int dy = 150 + r1.nextInt(100);
             int x = r1.nextInt(width) - 100;
             stairs.add(new Stair(
                 new Point(x, stairs.get(stairs.size()-1).getY() + dy), 200, 50)
