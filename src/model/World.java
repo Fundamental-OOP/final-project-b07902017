@@ -49,7 +49,7 @@ public class World {
 
 
     public void update() {
-        while(stairs.get(0).location.getY() < 0) {
+        while(stairs.get(0).location.getY() < -100) {
             stairs.remove(0);
         }
         while(stairs.size() < 10) {
