@@ -58,7 +58,9 @@ public class Stair extends Sprite{
     public void collisionHandle(Point originalLocation, Sprite stair, Sprite knight){
         Knight k = (Knight) knight;
         System.out.printf("Knight touch stair %d\n", k.getSize().height);
-        knight.setLocation(new Point(knight.getLocation().x, this.location.y - k.getSize().height));
+        Dimension size = knight.getBodySize();
+        if (knight.getLocation().y + size.height - stair.getLocation().y < 30)
+            knight.setLocation(new Point(knight.getLocation().x, this.location.y - k.getSize().height));
     }
 
 

@@ -32,7 +32,7 @@ public class Main {
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        int pNum = 2;
+        int pNum = 1;
         ArrayList<Sprite> players = new ArrayList<Sprite>();
         if (pNum == 1)
             players.add(new Knight(100, new Point(0, 0)));
