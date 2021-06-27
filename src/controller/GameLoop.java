@@ -23,7 +23,7 @@ public abstract class GameLoop {
             World world = getWorld();
             world.update();
             view.render(world);
-            delay(15);
+            delay(5);
         }
     }
 

@@ -14,6 +14,10 @@ import java.util.*;
 
 import stairs.Stair;
 
+
+// generates random stairs
+import java.util.Random;
+
 /**
  * @author - johnny850807@gmail.com (Waterball)
  */
@@ -23,6 +27,8 @@ public class World {
     // private final CollisionHandler collisionHandler;
     private int height = 1000;
     private int width = 1000;
+    private Random r1 = new Random(0);
+    // set seed = 0 for debugging
 
     // public World(CollisionHandler collisionHandler, Sprite... sprites) {
   
@@ -43,6 +49,17 @@ public class World {
 
 
     public void update() {
+        while(stairs.get(0).location.getY() < 0) {
+            stairs.remove(0);
+        }
+        while(stairs.size() < 10) {
+            int dy = 200 + r1.nextInt(200);
+            int x = r1.nextInt(width) - 100;
+            stairs.add(new Stair(
+                new Point(x, stairs.get(stairs.size()-1).getY() + dy), 200, 50)
+            );
+        }
+
         for (Sprite from : sprites){
             from.update();
         }
