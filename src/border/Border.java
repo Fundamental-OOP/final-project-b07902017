@@ -43,17 +43,4 @@ public abstract class Border extends Sprite {
         return shape.bodySize;
     }
 
-    @Override
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        if (from instanceof Border && to instanceof Knight) {
-            Rectangle body = from.getBody();
-            int offsetLeft = to.getX() - body.x;
-            int offsetRight = body.x + body.width - to.getX();
-            if (offsetLeft < 0) {
-                to.setLocation(new Point(to.getX() - (to.getRange().width + offsetLeft), to.getY()));
-            } else {
-                to.setLocation(new Point(to.getX() + offsetRight, to.getY()));
-            }
-        }
-    }
 }

@@ -53,10 +53,12 @@ public class Main {
         Wall leftWall = new Wall(-50, 0, height);
         Wall rightWall = new Wall(width, width+50, height);
         Floor floor = new Floor(height, height+50, width);
+        Ceiling ceiling = new Ceiling(-50, 0, width, 20);
         ArrayList <Border> borders = new ArrayList<>();
         borders.add(leftWall);
         borders.add(rightWall);
         borders.add(floor);
+        borders.add(ceiling);
         // borders.clear();
 
         // 這邊其實是加方塊不是家player
