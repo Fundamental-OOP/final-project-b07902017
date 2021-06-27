@@ -3,14 +3,12 @@ package views;
 import controller.Game;
 import controller.GameLoop;
 import model.Direction;
-import model.Sprite;
 import model.World;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Collection;
 
 /**
  * @author - johnny850807@gmail.com (Waterball)
@@ -31,8 +29,8 @@ public class GameView extends JFrame {
     }
 
     public GameView(Game game, int height, int width) throws HeadlessException {
-        this.HEIGHT = height;
-        this.WIDTH = width;
+        GameView.HEIGHT = height;
+        GameView.WIDTH = width;
         this.game = game;
         game.setView(canvas);
     

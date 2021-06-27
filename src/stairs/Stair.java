@@ -2,7 +2,6 @@ package stairs;
 
 import model.Sprite;
 import knight.Knight;
-import knight.k;
 import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;

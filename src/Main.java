@@ -1,7 +1,7 @@
 import controller.Game;
 
 import knight.Knight;
-import knight.KnightCollisionHandler;
+// import knight.KnightCollisionHandler;
 import knight.Walking;
 import knight.Attacking;
 
@@ -32,7 +32,7 @@ public class Main {
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        int pNum = 1;
+        int pNum = 2;
         ArrayList<Sprite> players = new ArrayList<Sprite>();
         if (pNum == 1)
             players.add(new Knight(100, new Point(0, 0)));
@@ -50,18 +50,16 @@ public class Main {
         int width = 1000;
 
         // 這邊其實是加方塊不是家player
-        players.add(new Stair(new Point(200, 300), 200, 50));
-        players.add(new Stair(new Point(600, 500), 200, 50));
-        players.add(new Stair(new Point(300, 800), 200, 50));
-        players.add(new Stair(new Point(700, 1200), 200, 50));
-        players.add(new Stair(new Point(100, 1400), 200, 50));
+        ArrayList<Stair> stairs = new ArrayList<Stair>();
+        stairs.add(new Stair(new Point(200, 300), 200, 50));
+        stairs.add(new Stair(new Point(600, 500), 200, 50));
+        stairs.add(new Stair(new Point(300, 800), 200, 50));
+        stairs.add(new Stair(new Point(700, 1200), 200, 50));
+        stairs.add(new Stair(new Point(100, 1400), 200, 50));
 
 
-         
-        
-
-        World world = new World(new KnightCollisionHandler(), players, height, width);  // model
-        Game game = new Game(world, players);  // controller
+        World world = new World(players, stairs, height, width);  // model
+        Game game = new Game(world, players, stairs);  // controller
 
         GameView view = new GameView(game, height, width);  // view
         game.start();  // run the game and the game loop

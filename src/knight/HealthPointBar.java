@@ -61,4 +61,8 @@ public class HealthPointBar extends Sprite {
     public boolean isDead() {
         return hp <= 0;
     }
+    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
+
+    }
+
 }

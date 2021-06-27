@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jdk.javadoc.internal.tool.Start;
-import knight.Knight;
 
-import static java.util.Arrays.stream;
+// import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
 import java.util.*;
+
+// import model.Sprite;
 
 import stairs.Stair;
 
@@ -19,92 +19,92 @@ import stairs.Stair;
  */
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
+    private final List<Stair> stairs = new CopyOnWriteArrayList<>();
     // private final CollisionHandler collisionHandler;
     private int height = 1000;
     private int width = 1000;
 
     // public World(CollisionHandler collisionHandler, Sprite... sprites) {
   
-    public World(CollisionHandler collisionHandler, ArrayList<Sprite> spriteList, int height, int width) {
+    public World(ArrayList<Sprite> spriteList, ArrayList<Stair> stairs, int height, int width) {
         this.height = height;
         this.width = width;
-        // this.collisionHandler = collisionHandler;
-        // addSprites(sprites);
+
         for (int i = 0; i < spriteList.size(); i++){
             this.sprites.add(spriteList.get(i));
             spriteList.get(i).setWorld(this);
         }
-        // for (a123 : spriteList){
-        //     this.sprites.add(a123);
-        //     a123.setWorld(this);
-        // }
+        for (int i = 0; i < stairs.size(); i++){
+            this.stairs.add(stairs.get(i));
+            stairs.get(i).setWorld(this);
+        }
+
     }
-    // public void addSprites(ArrayList<Sprite> spri) {
 
 
     public void update() {
-        // for (int i = 0; i < sprites.size(); i++){
-        //     Sprite from = sprites.get(i);
-        //     from.update();
-        //     Rectangle body = from.getBody();
-        //     for (int j = i + 1; j < sprites.size(); j++){
-        //         Sprite to = sprites.get(j);
-        //         if (to != from && body.intersects(to.getBody())) {
-        //             Point originalLocation = new Point(from.getLocation());
-        //             if (from instanceof Knight && to instanceof Knight)
-        //                 to.collisionHandle(originalLocation, from, to);
-        //             else if (from instanceof Stair)
-        //                 from.collisionHandle(originalLocation, from, to);
-        //             else if (to instanceof Stair)
-        //                 to.collisionHandle(originalLocation, to, from);
-        //         }
-        //     }
-        // }
-
+        for (Sprite from : sprites){
+            from.update();
+        }
+        for (Stair stair : stairs){
+            stair.update();
+        }
 
         for (Sprite from : sprites) {
-            from.update();
+            // from.update();
             Rectangle body = from.getBody();
-            for (Sprite to : sprites) {
-                if (to != from && body.intersects(to.getBody())) {
-                    Point originalLocation = new Point(from.getLocation());
-                    if (from instanceof Knight && to instanceof Knight)
-                        to.collisionHandle(originalLocation, from, to);
-                    else if (from instanceof Stair)
-                        from.collisionHandle(originalLocation, from, to);
-                    else if (to instanceof Stair)
-                        to.collisionHandle(originalLocation, to, from);
-                    // to.collisionHandle(originalLocation, from, to);
+            Point originalLocation = new Point(from.getLocation());
+
+            for (Stair stair : stairs){
+                if (body.intersects(stair.getBody())){
+                    stair.collisionHandle(originalLocation, stair, from);
                 }
             }
         }
+
+        // 底下要處理碰到牆壁天花版和地板
+        for (Sprite sprite : sprites){
+            Point location = new Point(sprite.getLocation());
+            Dimension size = new Dimension(sprite.getBodySize());
+            
+            if (location.y < 0){
+                sprite.setLocation(new Point(location.x, 0));
+
+            }
+            else if (location.y + size.height > height){
+
+            }
+            else if (location.x < 0){
+                sprite.setLocation(new Point(0, location.y));
+
+            } 
+            else if (location.x + size.width > width){
+                sprite.setLocation(new Point(width - size.width, location.y));
+            }
+        }
+        
     }
-
-    // public void addSprites(Sprite... sprites) {
-    //     stream(sprites).forEach(this::addSprite);
-    // }
-
-    // public void addSprite(Sprite sprite) {
-    //     sprites.add(sprite);
-    //     sprite.setWorld(this);
-    // }
-
     public void removeSprite(Sprite sprite) {
         sprites.remove(sprite);
         sprite.setWorld(null);
     }
 
     public void move(Sprite from, Dimension offset) {
-        // Point originalLocation = new Point(from.getLocation());
         from.getLocation().translate(offset.width, offset.height);
+        Point originalLocation = new Point(from.getLocation());
+        Rectangle body = from.getBody();
+        for (Sprite to : sprites) {
+            if (to != from && body.intersects(to.getBody())) {
 
+                to.collisionHandle(originalLocation, from, to);
+                // else if (from instanceof Stair)
+                //     from.collisionHandle(originalLocation, from, to);
+                // else if (to instanceof Stair)
+                //     to.collisionHandle(originalLocation, to, from);
+                // to.collisionHandle(originalLocation, from, to);
+            }
+        }
 
-        // Rectangle body = from.getBody();
-        // for (Sprite to : sprites) {
-        //     if (to != from && body.intersects(to.getBody())) {
-        //         to.collisionHandle(originalLocation, from, to);
-        //     }
-        // }
     }
 
     public Collection<Sprite> getSprites(Rectangle area) {
@@ -122,6 +122,9 @@ public class World {
     public void render(Graphics g) {
         for (Sprite sprite : sprites) {
             sprite.render(g);
+        }
+        for (Stair stair : stairs){
+            stair.render(g);
         }
     }
 }

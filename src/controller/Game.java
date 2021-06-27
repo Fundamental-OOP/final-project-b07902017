@@ -7,6 +7,7 @@ import model.World;
 import java.util.*;
 
 import model.Sprite;
+import stairs.Stair;
 /**
  * @author - johnny850807@gmail.com (Waterball)
  */
@@ -14,14 +15,19 @@ public class Game extends GameLoop {
     // private final Knight p1;
     // private final Knight p2;
     private ArrayList<Sprite> knights;
+    private ArrayList<Stair> stairs;
     private final World world;
 
-    public Game(World world, ArrayList<Sprite> knights) {
+    public Game(World world, ArrayList<Sprite> knights, ArrayList<Stair> stairs) {
         this.knights = new ArrayList<Sprite>();
         for (int i = 0; i < knights.size(); i++)
             this.knights.add(knights.get(i));
 
         this.world = world;
+        // this.stairs = stairs;
+        this.stairs = new ArrayList<Stair>();
+        for (int i = 0; i < stairs.size(); i++)
+            this.stairs.add(stairs.get(i));
     }
 
     // public Game(World world, Knight p1, Knight p2) {
