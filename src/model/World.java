@@ -15,6 +15,8 @@ import java.util.*;
 import stairs.Stair;
 
 
+import border.*;
+
 // generates random stairs
 import java.util.Random;
 
@@ -28,13 +30,15 @@ public class World {
     private int height = 1000;
     private int width = 1000;
     private Random r1 = new Random(0);
+    private List <Border> borders;
     // set seed = 0 for debugging
 
     // public World(CollisionHandler collisionHandler, Sprite... sprites) {
   
-    public World(ArrayList<Sprite> spriteList, ArrayList<Stair> stairs, int height, int width) {
+    public World(ArrayList<Sprite> spriteList, ArrayList<Stair> stairs, int height, int width, ArrayList<Border> borders) {
         this.height = height;
         this.width = width;
+        this.borders = borders;
 
         for (int i = 0; i < spriteList.size(); i++){
             this.sprites.add(spriteList.get(i));
@@ -77,29 +81,13 @@ public class World {
                     stair.collisionHandle(originalLocation, stair, from);
                 }
             }
-        }
 
-        // 底下要處理碰到牆壁天花版和地板
-        for (Sprite sprite : sprites){
-            Point location = new Point(sprite.getLocation());
-            Dimension size = new Dimension(sprite.getBodySize());
-            
-            if (location.y < 0){
-                sprite.setLocation(new Point(location.x, 0));
-
+            for(Border border:borders) {
+                if (body.intersects(border.getBody())){
+                    border.collisionHandle(originalLocation, border, from);
+                }
             }
-            else if (location.y + size.height > height){
-
-            }
-            else if (location.x < 0){
-                sprite.setLocation(new Point(0, location.y));
-
-            } 
-            else if (location.x + size.width > width){
-                sprite.setLocation(new Point(width - size.width, location.y));
-            }
-        }
-        
+        }        
     }
     public void removeSprite(Sprite sprite) {
         sprites.remove(sprite);

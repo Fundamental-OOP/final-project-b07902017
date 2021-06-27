@@ -19,6 +19,8 @@ import model.Sprite;
 
 import stairs.Stair;
 
+import border.*;
+
 /**
  * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
  * @author - johnny850807@gmail.com (Waterball)
@@ -48,6 +50,14 @@ public class Main {
         }
         int height = 1000;
         int width = 1000;
+        Wall leftWall = new Wall(-50, 0, height);
+        Wall rightWall = new Wall(width, width+50, height);
+        Floor floor = new Floor(height, height+50, width);
+        ArrayList <Border> borders = new ArrayList<>();
+        borders.add(leftWall);
+        borders.add(rightWall);
+        borders.add(floor);
+        // borders.clear();
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
@@ -58,7 +68,7 @@ public class Main {
         stairs.add(new Stair(new Point(100, 1400), 200, 50));
 
 
-        World world = new World(players, stairs, height, width);  // model
+        World world = new World(players, stairs, height, width, borders);  // model
         Game game = new Game(world, players, stairs);  // controller
 
         GameView view = new GameView(game, height, width);  // view
