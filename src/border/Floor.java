@@ -19,7 +19,6 @@ public class Floor extends Border {
         if (from instanceof Border && to instanceof Knight) {
             Knight tmp = (Knight) to;
             tmp.onDamaged(
-                tmp.getArea(new Dimension(87, 70),new Dimension(55, 88)),
                 Integer.MAX_VALUE
             );
         }

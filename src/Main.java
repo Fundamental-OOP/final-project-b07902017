@@ -17,7 +17,7 @@ import static media.AudioPlayer.addAudioByFilePath;
 import java.util.*; 
 import model.Sprite;
 
-import stairs.Stair;
+import stairs.*;
 
 import border.*;
 
@@ -79,11 +79,11 @@ public class Main {
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
-        stairs.add(new Stair(new Point(200, 300)));
-        stairs.add(new Stair(new Point(600, 500)));
-        stairs.add(new Stair(new Point(300, 800)));
-        stairs.add(new Stair(new Point(700, 1200)));
-        stairs.add(new Stair(new Point(100, 1400)));
+        stairs.add(new NormalStair(new Point(200, 300), 2000));
+        stairs.add(new NormalStair(new Point(600, 500), 2000));
+        stairs.add(new NormalStair(new Point(300, 800), 2000));
+        stairs.add(new NormalStair(new Point(700, 1200), 2000));
+        stairs.add(new NormalStair(new Point(100, 1400), 2000));
 
 
         World world = new World(players, stairs, height, width, borders);  // model

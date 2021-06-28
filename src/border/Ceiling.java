@@ -34,7 +34,6 @@ public class Ceiling extends Border {
         if (from instanceof Border && to instanceof Knight) {
             Knight tmp = (Knight) to;
             tmp.onDamaged(
-                tmp.getArea(new Dimension(87, 70),new Dimension(55, 88)),
                 damage
             );
             Rectangle body = from.getBody();

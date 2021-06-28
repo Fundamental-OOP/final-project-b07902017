@@ -16,6 +16,8 @@ public abstract class Sprite {
 
     public abstract void onDamaged(Rectangle damageArea, int damage);
 
+    public abstract void onHealed(Rectangle damageArea, int heal);
+
     public World getWorld() {
         return world;
     }

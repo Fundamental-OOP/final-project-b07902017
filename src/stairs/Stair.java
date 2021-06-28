@@ -5,28 +5,18 @@ import knight.Knight;
 import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;
-import java.io.File;
-import javax.imageio.ImageIO;
 
 
 public class Stair extends Sprite{
     private final SpriteShape shape;
     private int width;
     private int height;
-    private static Image getImage() {
-        try{
-            return ImageIO.read(new File("assets/normal.png"));
-        }catch(Exception e){
-            return null;
-        }
-    }
-    private static Image image = getImage();
 
-    public Stair(Point location) {
+    public Stair(Point location, int width, int height) {
         this.location = location;
        
-        this.width = image.getWidth(null);
-        this.height = image.getHeight(null);
+        this.width = width;
+        this.height = height;
 
         // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
         shape = new SpriteShape(new Dimension(width, height),
@@ -52,16 +42,17 @@ public class Stair extends Sprite{
         return shape.bodySize;
     }
 
+    @Override 
+    public void onHealed(Rectangle damageArea, int heal){}
+
     @Override
-    public void onDamaged(Rectangle damageArea, int damage){
-     
-    }
+    public void onDamaged(Rectangle damageArea, int damage){}
 
     @Override
     public void render(Graphics g) {
-        // g.setColor(Color.BLACK);
-        // g.fillRect(location.x, location.y, width, height);
-        g.drawImage(image, location.x, location.y, null);
+        g.setColor(Color.BLACK);
+        g.fillRect(location.x, location.y, width, height);
+        
     }
 
     @Override

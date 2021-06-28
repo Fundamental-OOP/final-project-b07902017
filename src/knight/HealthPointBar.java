@@ -25,6 +25,11 @@ public class HealthPointBar extends Sprite {
     }
 
     @Override
+    public void onHealed(Rectangle damageArea, int heal) {
+        this.hp = Math.min(hp + heal, maxHp);
+    }
+
+    @Override
     public void update() {
     }
 

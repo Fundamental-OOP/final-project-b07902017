@@ -19,6 +19,8 @@ public abstract class Border extends Sprite {
     public void render(Graphics g){};
     @Override
     public void onDamaged(Rectangle damageArea, int damage){};
+    @Override 
+    public void onHealed(Rectangle damageArea, int heal){};
     @Override
     public Point getLocation() {
         return location;
