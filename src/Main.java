@@ -79,11 +79,11 @@ public class Main {
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
-        stairs.add(new Stair(new Point(200, 300), 200, 50));
-        stairs.add(new Stair(new Point(600, 500), 200, 50));
-        stairs.add(new Stair(new Point(300, 800), 200, 50));
-        stairs.add(new Stair(new Point(700, 1200), 200, 50));
-        stairs.add(new Stair(new Point(100, 1400), 200, 50));
+        stairs.add(new Stair(new Point(200, 300)));
+        stairs.add(new Stair(new Point(600, 500)));
+        stairs.add(new Stair(new Point(300, 800)));
+        stairs.add(new Stair(new Point(700, 1200)));
+        stairs.add(new Stair(new Point(100, 1400)));
 
 
         World world = new World(players, stairs, height, width, borders);  // model
