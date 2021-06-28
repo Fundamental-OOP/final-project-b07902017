@@ -131,5 +131,8 @@ public class World {
         for (Stair stair : stairs){
             stair.render(g);
         }
+        for (Border border : borders) {
+            border.render(g);
+        }
     }
 }

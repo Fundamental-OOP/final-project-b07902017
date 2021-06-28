@@ -21,11 +21,35 @@ import stairs.Stair;
 
 import border.*;
 
+import javax.imageio.ImageIO;
+
 /**
  * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Main {
+    public static ArrayList <Border> setBorders(int height, int width) {
+        ArrayList <Border> borders = new ArrayList<>();
+        try{        
+            File file = new File("assets/ceiling.png");
+            Image image = ImageIO.read(file);
+            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 20, image);
+            System.out.println(image.getHeight(null));
+            borders.add(ceiling);
+        }catch(Exception e) {}
+        try{
+            File file = new File("assets/wall.png");
+            Image image = ImageIO.read(file);
+            Wall leftWall = new Wall(0, image.getWidth(null), width, image, Wall.Type.LEFT);
+            Wall rightWall = new Wall(width - image.getWidth(null), width, width, image, Wall.Type.RIGHT);
+            System.out.println(image.getHeight(null));
+            borders.add(leftWall);
+            borders.add(rightWall);
+        }catch(Exception e) {}
+        Floor floor = new Floor(height, height+50, width);
+        borders.add(floor);
+        return borders;
+    }
     public static void main(String[] args) {
         addAudioByFilePath(Walking.AUDIO_STEP1, new File("assets/audio/step1.wav"));
         addAudioByFilePath(Walking.AUDIO_STEP2, new File("assets/audio/step2.wav"));
@@ -50,15 +74,7 @@ public class Main {
         }
         int height = 1000;
         int width = 1000;
-        Wall leftWall = new Wall(-50, 0, height);
-        Wall rightWall = new Wall(width, width+50, height);
-        Floor floor = new Floor(height, height+50, width);
-        Ceiling ceiling = new Ceiling(-50, 0, width, 20);
-        ArrayList <Border> borders = new ArrayList<>();
-        borders.add(leftWall);
-        borders.add(rightWall);
-        borders.add(floor);
-        borders.add(ceiling);
+        ArrayList <Border> borders = setBorders(height, width);
         // borders.clear();
 
         // 這邊其實是加方塊不是家player
