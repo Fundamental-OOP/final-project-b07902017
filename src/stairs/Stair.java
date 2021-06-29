@@ -29,7 +29,7 @@ public abstract class Stair extends Sprite{
     }
 
     public void update(){
-        int rising_rate = -1;
+        int rising_rate = -2;
         this.location.translate(0, rising_rate);
     }
 
