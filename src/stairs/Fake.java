@@ -22,7 +22,7 @@ public class Fake extends Stair {
     public Fake(Point location, int heal) {
         super(location, image.getWidth(null), image.getHeight(null));
         this.heal = heal;
-        this.remaintime = 100;
+        this.remaintime = 30;
         this.touched = false;
     }
     @Override
@@ -44,5 +44,11 @@ public class Fake extends Stair {
         if (remaintime >=0)
             super.collisionHandle(originalLocation, from, to);
         
+    }
+
+    @Override
+    public Stair makeNew(Point point) {
+        // TODO Auto-generated method stub
+        return new Fake(point, 1);
     }
 }

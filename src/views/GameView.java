@@ -14,8 +14,8 @@ import java.awt.event.KeyEvent;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class GameView extends JFrame {
-    public static int HEIGHT = 1000;
-    public static int WIDTH = 1000;
+    public static int HEIGHT = 800;
+    public static int WIDTH = 800;
     public static final int P0 = 0;
     public static final int P1 = 1;
     public static final int P2 = 2;

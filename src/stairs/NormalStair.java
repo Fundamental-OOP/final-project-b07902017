@@ -39,4 +39,9 @@ public class NormalStair extends Stair {
         }
     }
 
+    @Override
+    public Stair makeNew(Point point) {
+        // TODO Auto-generated method stub
+        return new NormalStair(point, 1);
+    }
 }

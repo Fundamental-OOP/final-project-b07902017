@@ -35,4 +35,10 @@ public class Trampoline extends Stair {
             tmp.setspeed(-4);
         }
     }
+
+    @Override
+    public Stair makeNew(Point point) {
+        // TODO Auto-generated method stub
+        return new Trampoline(point, 1);
+    }
 }

@@ -10,7 +10,7 @@ import java.awt.*;
 import child.HealthPointBar;
 
 
-public class Stair extends Sprite{
+public abstract class Stair extends Sprite{
     private final SpriteShape shape;
     private int width;
     private int height;
@@ -68,4 +68,6 @@ public class Stair extends Sprite{
             ((HealthPointSprite) sprite).setspeed(0);
         }
     }
+
+    public abstract Stair makeNew(Point point);
 }

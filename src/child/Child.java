@@ -23,7 +23,7 @@ import static utils.ImageStateUtils.imageStatesFromFolder;
  */
 public class Child extends HealthPointSprite {
 
-    public static final int CHILD_HP = 500;
+    public static final int CHILD_HP = 12;
     private final SpriteShape shape;
     private final FiniteStateMachine fsm;
     private final Set<Direction> directions = new CopyOnWriteArraySet<>();
@@ -45,7 +45,7 @@ public class Child extends HealthPointSprite {
         ImageRenderer imageRenderer = new ChildImageRenderer(this);
         State idle = new WaitingPerFrame(4,
                 new Idle(imageStatesFromFolder("assets/child/idle", imageRenderer)));
-        State walking = new WaitingPerFrame(2,
+        State walking = new WaitingPerFrame(3,
                 new Walking(this, imageStatesFromFolder("assets/child/walking", imageRenderer)));
 
         fsm.setInitialState(idle);

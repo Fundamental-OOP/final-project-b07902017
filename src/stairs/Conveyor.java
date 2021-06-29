@@ -48,5 +48,10 @@ public class Conveyor extends Stair {
             }
         }
     }
+    @Override
+    public Stair makeNew(Point point) {
+        // TODO Auto-generated method stub
+        return new Conveyor(point, 1, direction);
+    }
 
 }

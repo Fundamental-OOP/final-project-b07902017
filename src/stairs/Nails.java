@@ -38,4 +38,10 @@ public class Nails extends Stair {
             }
         }
     }
+
+    @Override
+    public Stair makeNew(Point point) {
+        // TODO Auto-generated method stub
+        return new Nails(point, 5);
+    }
 }

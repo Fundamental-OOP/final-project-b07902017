@@ -26,9 +26,10 @@ import java.util.Random;
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
     private final List<Stair> stairs = new CopyOnWriteArrayList<>();
+    private final StairGenerator generator;
     // private final CollisionHandler collisionHandler;
-    private int height = 1000;
-    private int width = 1000;
+    private int height = 800;
+    private int width = 800;
     private Random r1 = new Random(0);
     private List <Border> borders;
     // set seed = 0 for debugging
@@ -47,6 +48,14 @@ public class World {
             this.stairs.add(stairs.get(i));
             stairs.get(i).setWorld(this);
         }
+        List<Stair> possibleStairs = new CopyOnWriteArrayList<>();
+        possibleStairs.add(new NormalStair(null, 0));
+        possibleStairs.add(new Nails(null, 0));
+        possibleStairs.add(new Trampoline(null, 0));
+        possibleStairs.add(new Fake(null, 0));
+        possibleStairs.add(new Conveyor(null, 0, 1));
+        possibleStairs.add(new Conveyor(null, 0, -1));
+        this.generator = new StairGenerator(possibleStairs);
 
     }
 
@@ -55,13 +64,11 @@ public class World {
         while(stairs.get(0).location.getY() < -100) {
             stairs.remove(0);
         }
-        while(stairs.size() < 10) {
-            int dy = 150 + r1.nextInt(100);
+        while(stairs.size() < 20) {
+            int dy = 50 + r1.nextInt(30);
             int x = r1.nextInt(width) - 100;
-            // stairs.add(new Stair(
-            //     new Point(x, stairs.get(stairs.size()-1).getY() + dy), 200, 50)
-            // );
-            stairs.add(new NormalStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy), 1));
+            stairs.add(generator.getStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy)));
+            // stairs.add(new NormalStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy), 1));
         }
 
         for (Sprite from : sprites){

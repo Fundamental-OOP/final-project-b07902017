@@ -63,18 +63,14 @@ public class Main {
         ArrayList<Sprite> players = new ArrayList<Sprite>();
         players.add(new Child(new Point(200, 100)));
         
-        int height = 1000;
-        int width = 1000;
+        int height = 800;
+        int width = 800;
         ArrayList <Border> borders = setBorders(height, width);
         // borders.clear();
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
         stairs.add(new NormalStair(new Point(200, 300), 1));
-        stairs.add(new Conveyor(new Point(600, 500), 1, -1));
-        stairs.add(new Trampoline(new Point(300, 800), 1));
-        stairs.add(new Fake(new Point(700, 1200), 1));
-        stairs.add(new NormalStair(new Point(100, 1400), 1));
 
 
         World world = new World(players, stairs, height, width, borders);  // model
