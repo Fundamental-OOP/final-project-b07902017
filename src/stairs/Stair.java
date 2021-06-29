@@ -59,13 +59,13 @@ public class Stair extends Sprite{
     }
 
     @Override
-    public void collisionHandle(Point originalLocation, Sprite stair, Sprite knight){
-        Knight k = (Knight) knight;
-        System.out.printf("Knight touch stair %d\n", k.getSize().height);
-        Dimension size = knight.getBodySize();
-        if (stair.getLocation().y > k.getSize().height+5 && knight.getLocation().y + size.height - stair.getLocation().y < 30){
-            knight.setLocation(new Point(knight.getLocation().x, this.location.y - k.getSize().height));
-            ((Knight) knight).setspeed(0);
+    public void collisionHandle(Point originalLocation, Sprite stair, Sprite sprite){
+        HealthPointSprite s = (HealthPointSprite) sprite;
+        System.out.printf("Knight touch stair %d\n", s.getSize().height);
+        Dimension size = sprite.getBodySize();
+        if (stair.getLocation().y > s.getSize().height+5 && sprite.getLocation().y + size.height - stair.getLocation().y < 30){
+            sprite.setLocation(new Point(sprite.getLocation().x, this.location.y - s.getSize().height));
+            ((HealthPointSprite) sprite).setspeed(0);
         }
     }
 }
