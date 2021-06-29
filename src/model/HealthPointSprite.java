@@ -31,7 +31,9 @@ public abstract class HealthPointSprite extends Sprite {
             world.removeSprite(this);
             AudioPlayer.playSounds(AUDIO_DIE);
         }
-    }    
+    }
+
+    public abstract Dimension getSize();
 
     @Override
     public void onHealed(Rectangle damageArea, int heal) {
@@ -55,6 +57,7 @@ public abstract class HealthPointSprite extends Sprite {
     public void setspeed(int newspeed){
         this.speed = newspeed;
     }
+    @Override
     public void update() {
         this.location.translate(0, (int) speed);
         if (speed < speedlimit) 

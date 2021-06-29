@@ -1,8 +1,11 @@
 package controller;
 
 import knight.Knight;
+import child.Child;
+import child.HealthPointBar;
 import model.Direction;
 import model.World;
+import model.HealthPointSprite;
 
 import java.util.*;
 
@@ -37,24 +40,43 @@ public class Game extends GameLoop {
     // }
 
     public void moveKnight(int playerNumber, Direction direction) {
-        getPlayer(playerNumber).move(direction);
+        HealthPointSprite sprite = getPlayer(playerNumber);
+        if(sprite instanceof Knight)
+            ((Knight) sprite).move(direction);
     }
 
     public void stopKnight(int playerNumber, Direction direction) {
-        getPlayer(playerNumber).stop(direction);
+        HealthPointSprite sprite = getPlayer(playerNumber);
+        if(sprite instanceof Knight)
+            ((Knight) sprite).stop(direction);
     }
 
     public void attack(int playerNumber) {
-        getPlayer(playerNumber).attack();
+        HealthPointSprite sprite = getPlayer(playerNumber);
+        if(sprite instanceof Knight)
+            ((Knight) sprite).attack();
     }
+
+    public void moveChild(int playerNumber, Direction direction) {
+        HealthPointSprite sprite = getPlayer(playerNumber);
+        if(sprite instanceof Child)
+            ((Child) sprite).move(direction);
+    }
+
+    public void stopChild(int playerNumber, Direction direction) {
+        HealthPointSprite sprite = getPlayer(playerNumber);
+        if(sprite instanceof Child)
+            ((Child) sprite).stop(direction);
+    }
+
 
     // public Knight getPlayer(int playerNumber) {
     //     return playerNumber == 1 ? p1 : p2;
     // }
 
-    public Knight getPlayer(int playerNumber) {
+    public HealthPointSprite getPlayer(int playerNumber) {
         // return playerNumber == 1 ? knights.get(0) : knights.get(1);
-        return (Knight) knights.get(playerNumber);
+        return (HealthPointSprite) knights.get(playerNumber);
     }
 
     @Override

@@ -7,6 +7,8 @@ import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;
 
+import child.HealthPointBar;
+
 
 public class Stair extends Sprite{
     private final SpriteShape shape;

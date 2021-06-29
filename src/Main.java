@@ -23,6 +23,8 @@ import border.*;
 
 import javax.imageio.ImageIO;
 
+import child.Child;
+
 /**
  * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
  * @author - johnny850807@gmail.com (Waterball)
