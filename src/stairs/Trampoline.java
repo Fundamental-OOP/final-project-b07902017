@@ -31,7 +31,7 @@ public class Trampoline extends Stair {
         Dimension size = to.getBodySize();
         if (to.getLocation().y + size.height - from.getLocation().y < 30) {
             tmp.onHealed(heal);
-            tmp.setLocation(new Point(tmp.getLocation().x, this.location.y - ((Knight) tmp).getSize().height-10));
+            tmp.setLocation(new Point(tmp.getLocation().x, this.location.y - ((HealthPointSprite) tmp).getSize().height-10));
             tmp.setspeed(-4);
         }
     }
