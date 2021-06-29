@@ -16,6 +16,8 @@ public abstract class HealthPointSprite extends Sprite {
     
     protected HealthPointBar hpBar;
 
+    public abstract Dimension getSize();
+
     public HealthPointSprite(int hp) {
         this.hpBar = new HealthPointBar(hp);
         hpBar.setOwner(this);
@@ -55,6 +57,7 @@ public abstract class HealthPointSprite extends Sprite {
     public void setspeed(int newspeed){
         this.speed = newspeed;
     }
+    @Override
     public void update() {
         this.location.translate(0, (int) speed);
         if (speed < speedlimit) 

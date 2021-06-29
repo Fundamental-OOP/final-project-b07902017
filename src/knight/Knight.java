@@ -111,6 +111,7 @@ public class Knight extends HealthPointSprite {
         return new Rectangle(location, shape.size);
     }
 
+    @Override
     public Dimension getSize(){
         return shape.size;
     }
