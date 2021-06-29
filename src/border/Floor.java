@@ -2,6 +2,7 @@ package border;
 
 import java.awt.*;
 
+import model.HealthPointSprite;
 import model.Sprite;
 import model.SpriteShape;
 import knight.Knight;
@@ -16,8 +17,8 @@ public class Floor extends Border {
     }
     @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
-        if (from instanceof Border && to instanceof Knight) {
-            Knight tmp = (Knight) to;
+        if (from instanceof Border && to instanceof HealthPointSprite) {
+            HealthPointSprite tmp = (HealthPointSprite) to;
             tmp.onDamaged(
                 Integer.MAX_VALUE
             );

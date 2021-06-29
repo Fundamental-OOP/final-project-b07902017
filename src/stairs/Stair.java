@@ -1,10 +1,13 @@
 package stairs;
 
+import model.HealthPointSprite;
 import model.Sprite;
 import knight.Knight;
 import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;
+
+import child.HealthPointBar;
 
 
 public class Stair extends Sprite{
@@ -56,12 +59,12 @@ public class Stair extends Sprite{
     }
 
     @Override
-    public void collisionHandle(Point originalLocation, Sprite stair, Sprite knight){
-        Knight k = (Knight) knight;
-        System.out.printf("Knight touch stair %d\n", k.getSize().height);
-        Dimension size = knight.getBodySize();
-        if (knight.getLocation().y + size.height - stair.getLocation().y < 30)
-            knight.setLocation(new Point(knight.getLocation().x, this.location.y - k.getSize().height));
+    public void collisionHandle(Point originalLocation, Sprite stair, Sprite sprite){
+        HealthPointSprite s = (HealthPointSprite) sprite;
+        System.out.printf("Knight touch stair %d\n", s.getSize().height);
+        Dimension size = sprite.getBodySize();
+        if (sprite.getLocation().y + size.height - stair.getLocation().y < 30)
+            sprite.setLocation(new Point(sprite.getLocation().x, this.location.y - s.getSize().height));
     }
 
 

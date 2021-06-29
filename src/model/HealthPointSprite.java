@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public abstract class HealthPointSprite extends Sprite {
     public static final String AUDIO_DIE = "Die";
+    private final int dropping_rate = 3;
 
     protected HealthPointBar hpBar;
 
@@ -28,7 +29,13 @@ public abstract class HealthPointSprite extends Sprite {
             world.removeSprite(this);
             AudioPlayer.playSounds(AUDIO_DIE);
         }
-    }    
+    }
+
+    public abstract Dimension getSize();
+    @Override
+    public void update() {
+        this.location.translate(0, dropping_rate);
+    }
 
     @Override
     public void onHealed(Rectangle damageArea, int heal) {

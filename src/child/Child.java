@@ -1,4 +1,4 @@
-package knight;
+package child;
 
 import fsm.FiniteStateMachine;
 import fsm.ImageRenderer;
@@ -14,58 +14,43 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import static fsm.FiniteStateMachine.Transition.from;
-import static knight.Knight.Event.*;
+import static child.Child.Event.*;
 import static model.Direction.LEFT;
 import static utils.ImageStateUtils.imageStatesFromFolder;
 
 /**
  * @author - johnny850807@gmail.com (Waterball)
  */
-public class Knight extends HealthPointSprite {
-    private final int dropping_rate = 3;
+public class Child extends HealthPointSprite {
 
-    public static final int KNIGHT_HP = 500;
+    public static final int CHILD_HP = 500;
     private final SpriteShape shape;
     private final FiniteStateMachine fsm;
     private final Set<Direction> directions = new CopyOnWriteArraySet<>();
-    private final int damage;
 
     public enum Event {
-        WALK, STOP, ATTACK, DAMAGED
+        WALK, STOP, DAMAGED
     }
 
-    public Knight(int damage, Point location) {
-        super(KNIGHT_HP);
-        this.damage = damage;
+    public Child(Point location) {
+        super(CHILD_HP);
         this.location = location;
         // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
         // shape = new SpriteShape(new Dimension(146, 176),
         //         new Dimension(33, 38), new Dimension(66, 105));
-        shape = new SpriteShape(new Dimension(146, 176),
-                new Dimension(0, 0), new Dimension(146, 176));
+        shape = new SpriteShape(new Dimension(73, 88),
+                new Dimension(0, 0), new Dimension(73, 88));
         fsm = new FiniteStateMachine();
 
-        ImageRenderer imageRenderer = new KnightImageRenderer(this);
+        ImageRenderer imageRenderer = new ChildImageRenderer(this);
         State idle = new WaitingPerFrame(4,
-                new Idle(imageStatesFromFolder("assets/knight/idle", imageRenderer)));
+                new Idle(imageStatesFromFolder("assets/child/idle", imageRenderer)));
         State walking = new WaitingPerFrame(2,
-                new Walking(this, imageStatesFromFolder("assets/knight/walking", imageRenderer)));
-        State attacking = new WaitingPerFrame(3,
-                new Attacking(this, fsm, imageStatesFromFolder("assets/knight/attack", imageRenderer)));
+                new Walking(this, imageStatesFromFolder("assets/child/walking", imageRenderer)));
 
         fsm.setInitialState(idle);
         fsm.addTransition(from(idle).when(WALK).to(walking));
         fsm.addTransition(from(walking).when(STOP).to(idle));
-        fsm.addTransition(from(idle).when(ATTACK).to(attacking));
-        fsm.addTransition(from(walking).when(ATTACK).to(attacking));
-    }
-
-    public void attack() {
-        fsm.trigger(ATTACK);
-    }
-
-    public int getDamage() {
-        return damage;
     }
 
     public void move(Direction direction) {
@@ -87,8 +72,7 @@ public class Knight extends HealthPointSprite {
 
     public void update() {
         fsm.update();
-        this.location.translate(0, dropping_rate);
-
+        super.update();
     }
 
     @Override
@@ -129,7 +113,7 @@ public class Knight extends HealthPointSprite {
     @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
         System.out.printf("collision22\n");
-        if (from instanceof Knight && to instanceof Knight) {
+        if (from instanceof HealthPointSprite && to instanceof HealthPointSprite) {
             Rectangle body = from.getBody();
             int offsetLeft = to.getX() - body.x;
             int offsetRight = body.x + body.width - to.getX();

@@ -3,6 +3,7 @@ package border;
 import java.awt.*;
 import model.SpriteShape;
 import knight.Knight;
+import model.HealthPointSprite;
 import model.Sprite;
 import java.io.File;
 import java.awt.*;
@@ -31,8 +32,8 @@ public class Ceiling extends Border {
         g.drawImage(image, (int)location.getX() + i * image.getWidth(null), (int)location.getY(), null);
     }
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
-        if (from instanceof Border && to instanceof Knight) {
-            Knight tmp = (Knight) to;
+        if (from instanceof Border && to instanceof HealthPointSprite) {
+            HealthPointSprite tmp = (HealthPointSprite) to;
             tmp.onDamaged(
                 damage
             );

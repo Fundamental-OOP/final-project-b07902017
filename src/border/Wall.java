@@ -2,6 +2,7 @@ package border;
 
 import java.awt.*;
 import model.SpriteShape;
+import model.HealthPointSprite;
 import model.Sprite;
 import knight.Knight;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class Wall extends Border {
     }
     @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        if (from instanceof Border && to instanceof Knight) {
+        if (from instanceof Border && to instanceof HealthPointSprite) {
             Rectangle body = from.getBody();
             int offsetLeft = to.getX() - body.x;
             int offsetRight = body.x + body.width - to.getX();

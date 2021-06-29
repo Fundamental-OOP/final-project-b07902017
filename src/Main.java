@@ -23,6 +23,8 @@ import border.*;
 
 import javax.imageio.ImageIO;
 
+import child.Child;
+
 /**
  * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
  * @author - johnny850807@gmail.com (Waterball)
@@ -61,7 +63,7 @@ public class Main {
         int pNum = 1;
         ArrayList<Sprite> players = new ArrayList<Sprite>();
         if (pNum == 1)
-            players.add(new Knight(100, new Point(0, 0)));
+            players.add(new Child(new Point(0, 0)));
         else if (pNum == 2){
             players.add(new Knight(100, new Point(0, 0)));
             players.add(new Knight(150, new Point(300, 500)));
