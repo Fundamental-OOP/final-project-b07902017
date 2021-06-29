@@ -33,7 +33,7 @@ public class Main {
         try{        
             File file = new File("assets/ceiling.png");
             Image image = ImageIO.read(file);
-            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 20, image);
+            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 2, image);
             System.out.println(image.getHeight(null));
             borders.add(ceiling);
         }catch(Exception e) {}
@@ -79,11 +79,11 @@ public class Main {
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
-        stairs.add(new NormalStair(new Point(200, 300), 2000));
-        stairs.add(new NormalStair(new Point(600, 500), 2000));
-        stairs.add(new NormalStair(new Point(300, 800), 2000));
-        stairs.add(new NormalStair(new Point(700, 1200), 2000));
-        stairs.add(new NormalStair(new Point(100, 1400), 2000));
+        stairs.add(new NormalStair(new Point(200, 300), 20));
+        stairs.add(new NormalStair(new Point(600, 500), 20));
+        stairs.add(new Nails(new Point(300, 800), 20));
+        stairs.add(new NormalStair(new Point(700, 1200), 20));
+        stairs.add(new NormalStair(new Point(100, 1400), 20));
 
 
         World world = new World(players, stairs, height, width, borders);  // model

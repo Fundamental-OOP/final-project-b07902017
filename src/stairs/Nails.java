@@ -6,21 +6,21 @@ import model.Sprite;
 import model.HealthPointSprite;
 import java.util.*;
 
-public class NormalStair extends Stair {
+public class Nails extends Stair {
     private Set<HealthPointSprite> touched;
-    private int heal;
+    private int damage;
     private static Image getImage() {
         try{
-            return ImageIO.read(new File("assets/normal.png"));
+            return ImageIO.read(new File("assets/nails.png"));
         }catch(Exception e){
             return null;
         }
     }
     private static Image image = getImage();
-    public NormalStair(Point location, int heal) {
+    public Nails(Point location, int damage) {
         super(location, image.getWidth(null), image.getHeight(null));
         this.touched = new HashSet<>();
-        this.heal = heal;
+        this.damage = damage;
     }
     @Override
     public void render(Graphics g) {
@@ -33,10 +33,9 @@ public class NormalStair extends Stair {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
             if (!touched.contains(tmp) && to.getLocation().y + size.height - from.getLocation().y < 30) {
-                tmp.onHealed(heal);
+                tmp.onDamaged(damage);
                 touched.add(tmp);
             }
         }
     }
-
 }
