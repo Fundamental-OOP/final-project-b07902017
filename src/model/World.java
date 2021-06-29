@@ -66,7 +66,7 @@ public class World {
         }
         while(stairs.size() < 20) {
             int dy = 50 + r1.nextInt(30);
-            int x = r1.nextInt(width) - 100;
+            int x = r1.nextInt(width-100);
             stairs.add(generator.getStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy)));
             // stairs.add(new NormalStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy), 1));
         }

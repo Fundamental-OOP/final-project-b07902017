@@ -35,7 +35,7 @@ public class Main {
         try{        
             File file = new File("assets/ceiling.png");
             Image image = ImageIO.read(file);
-            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 1, image);
+            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 5, image);
             System.out.println(image.getHeight(null));
             borders.add(ceiling);
         }catch(Exception e) {}

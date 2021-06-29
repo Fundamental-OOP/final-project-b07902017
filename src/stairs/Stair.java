@@ -63,7 +63,7 @@ public abstract class Stair extends Sprite{
         HealthPointSprite s = (HealthPointSprite) sprite;
         System.out.printf("Knight touch stair %d\n", s.getSize().height);
         Dimension size = sprite.getBodySize();
-        if (stair.getLocation().y > s.getSize().height+5 && sprite.getLocation().y + size.height - stair.getLocation().y < 30){
+        if (stair.getLocation().y > s.getSize().height+5 && sprite.getLocation().y + size.height - stair.getLocation().y < 10){
             sprite.setLocation(new Point(sprite.getLocation().x, this.location.y - s.getSize().height));
             ((HealthPointSprite) sprite).setspeed(0);
         }

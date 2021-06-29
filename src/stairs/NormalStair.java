@@ -32,7 +32,7 @@ public class NormalStair extends Stair {
         if (from instanceof Stair && to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
-            if (!touched.contains(tmp) && to.getLocation().y + size.height - from.getLocation().y < 30) {
+            if (!touched.contains(tmp) && to.getLocation().y + size.height - from.getLocation().y < 10) {
                 tmp.onHealed(heal);
                 touched.add(tmp);
             }

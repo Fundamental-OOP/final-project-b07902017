@@ -38,8 +38,8 @@ public class Child extends HealthPointSprite {
         // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
         // shape = new SpriteShape(new Dimension(146, 176),
         //         new Dimension(33, 38), new Dimension(66, 105));
-        shape = new SpriteShape(new Dimension(73, 88),
-                new Dimension(0, 0), new Dimension(73, 88));
+        shape = new SpriteShape(new Dimension(40, 50),
+                new Dimension(0, 0), new Dimension(40, 50));
         fsm = new FiniteStateMachine();
 
         ImageRenderer imageRenderer = new ChildImageRenderer(this);

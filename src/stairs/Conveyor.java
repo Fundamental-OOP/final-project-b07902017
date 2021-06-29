@@ -39,7 +39,7 @@ public class Conveyor extends Stair {
         if (from instanceof Stair && to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
-            if ( to.getLocation().y + size.height - from.getLocation().y < 30) {
+            if ( to.getLocation().y + size.height - from.getLocation().y < 10) {
                 to.setLocation(new Point(to.getLocation().x + direction*5, to.getLocation().y-1));
                 if (!touched.contains(tmp)){
                     tmp.onHealed(heal);
