@@ -1,5 +1,6 @@
 package stairs;
 
+import model.HealthPointSprite;
 import model.Sprite;
 import knight.Knight;
 import model.SpriteShape;
@@ -60,9 +61,9 @@ public class Stair extends Sprite{
         Knight k = (Knight) knight;
         System.out.printf("Knight touch stair %d\n", k.getSize().height);
         Dimension size = knight.getBodySize();
-        if (knight.getLocation().y + size.height - stair.getLocation().y < 30)
+        if (stair.getLocation().y > k.getSize().height+5 && knight.getLocation().y + size.height - stair.getLocation().y < 30){
             knight.setLocation(new Point(knight.getLocation().x, this.location.y - k.getSize().height));
+            ((Knight) knight).setspeed(0);
+        }
     }
-
-
 }

@@ -12,7 +12,7 @@ import java.util.*;
 
 // import model.Sprite;
 
-import stairs.Stair;
+import stairs.*;
 
 
 import border.*;
@@ -39,7 +39,6 @@ public class World {
         this.height = height;
         this.width = width;
         this.borders = borders;
-
         for (int i = 0; i < spriteList.size(); i++){
             this.sprites.add(spriteList.get(i));
             spriteList.get(i).setWorld(this);
@@ -59,9 +58,10 @@ public class World {
         while(stairs.size() < 10) {
             int dy = 150 + r1.nextInt(100);
             int x = r1.nextInt(width) - 100;
-            stairs.add(new Stair(
-                new Point(x, stairs.get(stairs.size()-1).getY() + dy), 200, 50)
-            );
+            // stairs.add(new Stair(
+            //     new Point(x, stairs.get(stairs.size()-1).getY() + dy), 200, 50)
+            // );
+            stairs.add(new NormalStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy), 1));
         }
 
         for (Sprite from : sprites){

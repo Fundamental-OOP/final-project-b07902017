@@ -24,7 +24,7 @@ import static utils.ImageStateUtils.imageStatesFromFolder;
 public class Knight extends HealthPointSprite {
     private final int dropping_rate = 3;
 
-    public static final int KNIGHT_HP = 500;
+    public static final int KNIGHT_HP = 12;
     private final SpriteShape shape;
     private final FiniteStateMachine fsm;
     private final Set<Direction> directions = new CopyOnWriteArraySet<>();
@@ -41,8 +41,8 @@ public class Knight extends HealthPointSprite {
         // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
         // shape = new SpriteShape(new Dimension(146, 176),
         //         new Dimension(33, 38), new Dimension(66, 105));
-        shape = new SpriteShape(new Dimension(146, 176),
-                new Dimension(0, 0), new Dimension(146, 176));
+        shape = new SpriteShape(new Dimension(73*2, 88*2),
+                new Dimension(0, 0), new Dimension(73*2, 88*2));
         fsm = new FiniteStateMachine();
 
         ImageRenderer imageRenderer = new KnightImageRenderer(this);
@@ -87,8 +87,8 @@ public class Knight extends HealthPointSprite {
 
     public void update() {
         fsm.update();
-        this.location.translate(0, dropping_rate);
-
+        super.update();
+        // this.location.translate(0, dropping_rate);
     }
 
     @Override

@@ -33,11 +33,11 @@ public class Ceiling extends Border {
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
         if (from instanceof Border && to instanceof Knight) {
             Knight tmp = (Knight) to;
-            tmp.onDamaged(
-                damage
-            );
+            tmp.onDamaged(damage);
+            
             Rectangle body = from.getBody();
-            to.setLocation(new Point(to.getX(), body.y + body.height));
+            to.setLocation(new Point(to.getX(), body.y + body.height + 10));
+            tmp.setspeed(3);
         }
     }
 }

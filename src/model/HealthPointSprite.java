@@ -10,7 +10,10 @@ import java.awt.*;
  */
 public abstract class HealthPointSprite extends Sprite {
     public static final String AUDIO_DIE = "Die";
-
+    protected static final double acceleration = 0.1;
+    protected static final double speedlimit = 3;
+    protected double speed;
+    
     protected HealthPointBar hpBar;
 
     public HealthPointSprite(int hp) {
@@ -47,5 +50,14 @@ public abstract class HealthPointSprite extends Sprite {
     @Override
     public void render(Graphics g) {
         hpBar.render(g);
+    }
+
+    public void setspeed(int newspeed){
+        this.speed = newspeed;
+    }
+    public void update() {
+        this.location.translate(0, (int) speed);
+        if (speed < speedlimit) 
+            speed += acceleration;
     }
 }

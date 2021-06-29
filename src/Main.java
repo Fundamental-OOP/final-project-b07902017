@@ -33,7 +33,7 @@ public class Main {
         try{        
             File file = new File("assets/ceiling.png");
             Image image = ImageIO.read(file);
-            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 2, image);
+            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 1, image);
             System.out.println(image.getHeight(null));
             borders.add(ceiling);
         }catch(Exception e) {}
@@ -58,20 +58,9 @@ public class Main {
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        int pNum = 1;
         ArrayList<Sprite> players = new ArrayList<Sprite>();
-        if (pNum == 1)
-            players.add(new Knight(100, new Point(0, 0)));
-        else if (pNum == 2){
-            players.add(new Knight(100, new Point(0, 0)));
-            players.add(new Knight(150, new Point(300, 500)));
-        }
-        else if (pNum == 3){
-            players.add(new Knight(100, new Point(0, 0)));
-            players.add(new Knight(150, new Point(300, 300)));
-            players.add(new Knight(150, new Point(600, 600)));
-
-        }
+        players.add(new Knight(100, new Point(200, 100)));
+        
         int height = 1000;
         int width = 1000;
         ArrayList <Border> borders = setBorders(height, width);
@@ -79,11 +68,11 @@ public class Main {
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
-        stairs.add(new NormalStair(new Point(200, 300), 20));
-        stairs.add(new NormalStair(new Point(600, 500), 20));
-        stairs.add(new Nails(new Point(300, 800), 20));
-        stairs.add(new NormalStair(new Point(700, 1200), 20));
-        stairs.add(new NormalStair(new Point(100, 1400), 20));
+        stairs.add(new NormalStair(new Point(200, 300), 1));
+        stairs.add(new NormalStair(new Point(600, 500), 1));
+        stairs.add(new Trampoline(new Point(300, 800), 1));
+        stairs.add(new NormalStair(new Point(700, 1200), 1));
+        stairs.add(new NormalStair(new Point(100, 1400), 1));
 
 
         World world = new World(players, stairs, height, width, borders);  // model
