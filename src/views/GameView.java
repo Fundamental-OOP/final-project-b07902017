@@ -9,6 +9,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import border.*;
+import child.*;
+import stairs.*;
+import model.Sprite;
+import java.io.File;
+import javax.imageio.*;
 
 /**
  * @author - johnny850807@gmail.com (Waterball)
@@ -21,7 +30,7 @@ public class GameView extends JFrame {
     public static final int P2 = 2;
 
     private final Canvas canvas = new Canvas();
-    private final Game game;
+    private Game game;
 
     public GameView(Game game) throws HeadlessException {
         this.game = game;
@@ -36,16 +45,32 @@ public class GameView extends JFrame {
     
     }
 
-    public void launch() {
-        // GUI Stuff
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setContentPane(canvas);
-        setSize(WIDTH, HEIGHT);
-        setContentPane(canvas);
-        setVisible(true);
+    public static ArrayList <Border> setBorders(int height, int width) {
+        ArrayList <Border> borders = new ArrayList<>();
+        try{        
+            File file = new File("assets/ceiling.png");
+            Image image = ImageIO.read(file);
+            Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 5, image);
+            System.out.println(image.getHeight(null));
+            borders.add(ceiling);
+        }catch(Exception e) {}
+        try{
+            File file = new File("assets/wall.png");
+            Image image = ImageIO.read(file);
+            Wall leftWall = new Wall(0, image.getWidth(null), width, image, Wall.Type.LEFT);
+            Wall rightWall = new Wall(width - image.getWidth(null), width, width, image, Wall.Type.RIGHT);
+            System.out.println(image.getHeight(null));
+            borders.add(leftWall);
+            borders.add(rightWall);
+        }catch(Exception e) {}
+        Floor floor = new Floor(height, height+50, width);
+        borders.add(floor);
+        return borders;
+    }
 
-        // Keyboard listener
-        addKeyListener(new KeyAdapter() {
+    public void setKeyAdapter() {
+         // Keyboard listener
+         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
@@ -81,13 +106,6 @@ public class GameView extends JFrame {
             @Override
             public void keyReleased(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_UP:
-                        game.stopKnight(P0, Direction.UP);
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        game.stopKnight(P0, Direction.DOWN);
-                        game.stopChild(P0, Direction.DOWN);
-                        break;
                     case KeyEvent.VK_LEFT:
                         game.stopKnight(P0, Direction.LEFT);
                         game.stopChild(P0, Direction.LEFT);
@@ -97,13 +115,6 @@ public class GameView extends JFrame {
                         game.stopChild(P0, Direction.RIGHT);
                         break;  
 
-                    case KeyEvent.VK_W:
-                        game.stopKnight(P1, Direction.UP);
-                        break;
-                    case KeyEvent.VK_S:
-                        game.stopKnight(P1, Direction.DOWN);
-                        game.stopChild(P1, Direction.DOWN);
-                        break;
                     case KeyEvent.VK_A:
                         game.stopKnight(P1, Direction.LEFT);
                         game.stopChild(P1, Direction.LEFT);
@@ -111,13 +122,6 @@ public class GameView extends JFrame {
                     case KeyEvent.VK_D:
                         game.stopKnight(P1, Direction.RIGHT);
                         game.stopChild(P1, Direction.RIGHT);
-                        break;
-                    case KeyEvent.VK_I:
-                        game.stopKnight(P2, Direction.UP);
-                        break;
-                    case KeyEvent.VK_K:
-                        game.stopKnight(P2, Direction.DOWN);
-                        game.stopChild(P2, Direction.DOWN);
                         break;
                     case KeyEvent.VK_J:
                         game.stopKnight(P2, Direction.LEFT);
@@ -130,6 +134,43 @@ public class GameView extends JFrame {
                 }
             }
         });
+    }
+
+    public void launch() {
+        // GUI Stuff
+        CardLayout card = new CardLayout();
+        JPanel canvases = new JPanel(card);
+        JButton btn = new JButton("1 player");
+        btn.addActionListener(new ActionListener(){  
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
+                ArrayList<Stair> stairs = new ArrayList<Stair>();
+                stairs.add(new NormalStair(new Point(200, 300), 1));
+                ArrayList<Sprite> players = new ArrayList<Sprite>();
+                players.add(new Child(new Point(200, 100)));
+                World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
+                Game newGame = new Game(world, players, stairs);
+                Canvas newCanvas = new Canvas();
+                newGame.setView(newCanvas);
+                game = newGame;
+                newGame.start();
+                canvases.add("1 player", newCanvas);
+                card.show(canvases, "1 player");
+                setKeyAdapter();
+                requestFocus();
+            }
+        });
+        canvas.add(btn);
+        canvas.setSize(WIDTH, HEIGHT);
+        canvases.add(canvas, "menu");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setContentPane(canvases);
+        setSize(WIDTH, HEIGHT);
+        setContentPane(canvases);
+        setVisible(true);
+        setKeyAdapter();
+        requestFocus();
     }
 
     public static class Canvas extends JPanel implements GameLoop.View {
