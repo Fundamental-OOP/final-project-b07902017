@@ -15,7 +15,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 import static fsm.FiniteStateMachine.Transition.from;
 import static child.Child.Event.*;
-import static model.Direction.LEFT;
 import static utils.ImageStateUtils.imageStatesFromFolder;
 
 /**
@@ -54,7 +53,7 @@ public class Child extends HealthPointSprite {
     }
 
     public void move(Direction direction) {
-        if (direction == LEFT || direction == Direction.RIGHT) {
+        if (direction == Direction.LEFT || direction == Direction.RIGHT) {
             face = direction;
         }
         if (!directions.contains(direction)) {

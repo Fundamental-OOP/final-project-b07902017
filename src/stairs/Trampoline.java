@@ -3,10 +3,10 @@ import java.awt.*;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-import knight.Knight;
 import model.Sprite;
 import model.HealthPointSprite;
 public class Trampoline extends Stair {
+    private static final int force = -5;
     private int heal;
     private static Image getImage() {
         try{
@@ -32,7 +32,7 @@ public class Trampoline extends Stair {
         if (to.getLocation().y + size.height - from.getLocation().y < 10) {
             tmp.onHealed(heal);
             tmp.setLocation(new Point(tmp.getLocation().x, this.location.y - ((HealthPointSprite) tmp).getSize().height-10));
-            tmp.setspeed(-4);
+            tmp.setspeed(force);
         }
     }
 

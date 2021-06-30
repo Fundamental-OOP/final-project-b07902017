@@ -12,18 +12,17 @@ public class StairGenerator {
     
     public StairGenerator(List<Stair> stairs){
         this.candidates = stairs;
-        int[] pos = {5,1,1,1,1,1};
-        this.numbers = setpossibility(pos);
+        int[] pos = {5,2,1,1,1,1};
+        setpossibility(pos);
     }
 
-    public static List<Integer> setpossibility(int a[]){
-        List<Integer> numbers = new CopyOnWriteArrayList<>();
+    public void setpossibility(int a[]){
+        this.numbers = new CopyOnWriteArrayList<>();
         assert(a.length == 6);
         for(int i=0; i<6; i++){
             for(int j=0; j<a[i]; j++) 
                 numbers.add(i);
         }
-        return numbers;
     }
 
     public Stair getStair(Point point){

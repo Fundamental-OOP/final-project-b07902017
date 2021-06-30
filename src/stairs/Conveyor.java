@@ -7,6 +7,7 @@ import model.HealthPointSprite;
 import java.util.*;
 
 public class Conveyor extends Stair {
+    private static final int speed = 3;
     private Set<HealthPointSprite> touched;
     private int heal;
     private int direction; // 1: RIGHT, -1: LEFT 
@@ -40,7 +41,7 @@ public class Conveyor extends Stair {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
             if ( to.getLocation().y + size.height - from.getLocation().y < 10) {
-                to.setLocation(new Point(to.getLocation().x + direction*5, to.getLocation().y-1));
+                to.setLocation(new Point(to.getLocation().x + direction*speed, to.getLocation().y-1));
                 if (!touched.contains(tmp)){
                     tmp.onHealed(heal);
                     touched.add(tmp);

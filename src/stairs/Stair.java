@@ -2,13 +2,9 @@ package stairs;
 
 import model.HealthPointSprite;
 import model.Sprite;
-import knight.Knight;
 import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;
-
-import child.HealthPointBar;
-
 
 public abstract class Stair extends Sprite{
     private final SpriteShape shape;
@@ -24,12 +20,10 @@ public abstract class Stair extends Sprite{
         // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
         shape = new SpriteShape(new Dimension(width, height),
         new Dimension(1, 1), new Dimension(width - 2, height - 2));
-        // shape = new SpriteShape(new Dimension(146, 176),
-        // new Dimension(33, 38), new Dimension(66, 105));
     }
 
     public void update(){
-        int rising_rate = -2;
+        int rising_rate = -1;
         this.location.translate(0, rising_rate);
     }
 

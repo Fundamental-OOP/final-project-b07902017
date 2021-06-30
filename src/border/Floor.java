@@ -5,7 +5,6 @@ import java.awt.*;
 import model.HealthPointSprite;
 import model.Sprite;
 import model.SpriteShape;
-import knight.Knight;
 
 public class Floor extends Border {
     public Floor(int y1, int y2, int width) {

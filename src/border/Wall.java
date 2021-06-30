@@ -4,8 +4,6 @@ import java.awt.*;
 import model.SpriteShape;
 import model.HealthPointSprite;
 import model.Sprite;
-import knight.Knight;
-import java.awt.*;
 public class Wall extends Border {
     private Image image;
     private int height;

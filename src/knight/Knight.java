@@ -22,8 +22,6 @@ import static utils.ImageStateUtils.imageStatesFromFolder;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Knight extends HealthPointSprite {
-    private final int dropping_rate = 3;
-
     public static final int KNIGHT_HP = 12;
     private final SpriteShape shape;
     private final FiniteStateMachine fsm;
@@ -88,7 +86,6 @@ public class Knight extends HealthPointSprite {
     public void update() {
         fsm.update();
         super.update();
-        // this.location.translate(0, dropping_rate);
     }
 
     @Override

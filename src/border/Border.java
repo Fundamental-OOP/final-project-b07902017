@@ -2,7 +2,6 @@ package border;
 
 import model.Sprite;
 import java.awt.*;
-import knight.Knight;
 import model.SpriteShape;
 
 public abstract class Border extends Sprite {
