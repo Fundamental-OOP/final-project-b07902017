@@ -60,11 +60,11 @@ public class GameView extends JFrame {
 
                     case KeyEvent.VK_A:
                         game.moveKnight(P1, Direction.LEFT);
-                        game.moveChild(P0, Direction.LEFT);
+                        game.moveChild(P1, Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
                         game.moveKnight(P1, Direction.RIGHT);
-                        game.moveChild(P0, Direction.RIGHT);
+                        game.moveChild(P1, Direction.RIGHT);
                         break;
 
                     case KeyEvent.VK_J:
