@@ -17,9 +17,6 @@ import static fsm.FiniteStateMachine.Transition.from;
 import static child.Child.Event.*;
 import static utils.ImageStateUtils.imageStatesFromFolder;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
 public class Child extends HealthPointSprite {
 
     public static final int CHILD_HP = 12;

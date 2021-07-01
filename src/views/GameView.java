@@ -18,7 +18,7 @@ import java.io.File;
 import javax.imageio.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class GameView extends JFrame {
     public static int HEIGHT = 800;

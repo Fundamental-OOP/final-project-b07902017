@@ -6,7 +6,7 @@ import media.AudioPlayer;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public abstract class HealthPointSprite extends Sprite {
     public static final String AUDIO_DIE = "Die";

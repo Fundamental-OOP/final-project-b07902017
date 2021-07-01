@@ -8,7 +8,7 @@ import java.util.*;
 
 import stairs.Stair;
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class Game extends GameLoop {
     private ArrayList<Child> players;

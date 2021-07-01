@@ -20,7 +20,7 @@ import child.Child;
 import java.util.Random;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class World {
     private final List<Child> players = new CopyOnWriteArrayList<>();

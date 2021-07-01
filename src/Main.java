@@ -15,9 +15,6 @@ import stairs.*;
 import border.*;
 import javax.imageio.ImageIO;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
 public class Main {
     public static ArrayList <Border> setBorders(int height, int width) {
         ArrayList <Border> borders = new ArrayList<>();

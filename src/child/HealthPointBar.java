@@ -5,7 +5,7 @@ import model.Sprite;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class HealthPointBar extends Sprite {
     private final int maxHp;

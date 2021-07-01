@@ -6,7 +6,7 @@ import model.Direction;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class ChildImageRenderer implements ImageRenderer {
     protected Child child;

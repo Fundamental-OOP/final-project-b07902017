@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public abstract class Sprite {
     protected World world;

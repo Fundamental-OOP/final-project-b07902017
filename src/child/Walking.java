@@ -7,7 +7,7 @@ import model.Direction;
 import java.util.List;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public class Walking extends CyclicSequence {
     public static final String AUDIO_STEP1 = "step1";

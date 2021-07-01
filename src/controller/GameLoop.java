@@ -3,7 +3,7 @@ package controller;
 import model.World;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * reference: https://github.com/Johnny850807/Java-Game-Programming-with-FSM-and-MVC
  */
 public abstract class GameLoop {
     private boolean running;
