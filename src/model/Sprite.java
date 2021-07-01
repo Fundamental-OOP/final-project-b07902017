@@ -14,8 +14,6 @@ public abstract class Sprite {
 
     public abstract void render(Graphics g);
 
-    public abstract void onDamaged(int damage);
-
     public World getWorld() {
         return world;
     }
