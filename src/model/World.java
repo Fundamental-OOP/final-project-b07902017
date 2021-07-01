@@ -32,6 +32,7 @@ public class World {
     private int width = 800;
     private Random r1 = new Random(0);
     private List <Border> borders;
+    private int levelCount = 0;
     // set seed = 0 for debugging
 
     // public World(CollisionHandler collisionHandler, Sprite... sprites) {
@@ -63,12 +64,19 @@ public class World {
     public void update() {
         while(stairs.get(0).location.getY() < -100) {
             stairs.remove(0);
+            levelCount++;
+            if (levelCount%10==0){
+                int l = levelCount/10;
+                int[] pos = {50+3*l,20+5*l,10+l,10+l,10+l,10+l};
+                generator.setpossibility(pos);
+            }
+
+            
         }
         while(stairs.size() < 20) {
             int dy = 50 + r1.nextInt(30);
             int x = r1.nextInt(width-100);
             stairs.add(generator.getStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy)));
-            // stairs.add(new NormalStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy), 1));
         }
 
         for (Sprite from : sprites){
@@ -79,7 +87,6 @@ public class World {
         }
 
         for (Sprite from : sprites) {
-            // from.update();
             Rectangle body = from.getBody();
             Point originalLocation = new Point(from.getLocation());
 

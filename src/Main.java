@@ -1,7 +1,5 @@
 import controller.Game;
 
-import knight.Knight;
-// import knight.KnightCollisionHandler;
 import knight.Walking;
 import knight.Attacking;
 

@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public abstract class HealthPointSprite extends Sprite {
     public static final String AUDIO_DIE = "Die";
-    protected static final double acceleration = 0.1;
+    protected static final double acceleration = 0.15;
     protected static final double speedlimit = 3;
     protected double speed;
     

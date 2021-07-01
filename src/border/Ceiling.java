@@ -2,13 +2,8 @@ package border;
 
 import java.awt.*;
 import model.SpriteShape;
-import knight.Knight;
 import model.HealthPointSprite;
 import model.Sprite;
-import java.io.File;
-import java.awt.*;
-import java.awt.image.*;
-
 
 public class Ceiling extends Border {
     private int damage;
