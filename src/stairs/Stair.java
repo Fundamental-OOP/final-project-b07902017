@@ -41,9 +41,6 @@ public abstract class Stair extends Sprite implements CollisionHandler{
     }
 
     @Override
-    public void onDamaged(int damage){}
-
-    @Override
     public void render(Graphics g) {
         g.setColor(Color.BLACK);
         g.fillRect(location.x, location.y, width, height);
