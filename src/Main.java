@@ -46,19 +46,17 @@ public class Main {
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        ArrayList<Sprite> players = new ArrayList<Sprite>();
         int height = 800;
         int width = 800;
         ArrayList <Border> borders = setBorders(height, width);
-        // borders.clear();
 
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
         stairs.add(new NormalStair(new Point(200, 300), 1));
 
 
-        World world = new World(players, stairs, height, width, borders);  // model
-        Game game = new Game(world, players, stairs, true);  // controller
+        World world = new World(0, stairs, height, width, borders);  // model
+        Game game = new Game(world, stairs, true);  // controller
 
         GameView view = new GameView(game, height, width);  // view
         game.start();  // run the game and the game loop

@@ -18,10 +18,10 @@ public class Game extends GameLoop {
     private final World world;
     private boolean isMenu;
 
-    public Game(World world, ArrayList<Sprite> players, ArrayList<Stair> stairs, boolean isMenu) {
+    public Game(World world, ArrayList<Stair> stairs, boolean isMenu) {
         this.players = new ArrayList<Sprite>();
-        for (int i = 0; i < players.size(); i++)
-            this.players.add(players.get(i));
+        for (int i = 0; i < world.getPlayers().size(); i++)
+            this.players.add(world.getPlayer(i));
 
         this.world = world;
         // this.stairs = stairs;
@@ -48,7 +48,7 @@ public class Game extends GameLoop {
     }
 
     public boolean isEnd() {
-        if(!isMenu && getWorld().getSprites().size() == 0)
+        if(!isMenu && getWorld().getPlayers().size() == 0)
             return true;
         return false;
     }

@@ -1,13 +1,11 @@
 package model;
 
 import java.awt.*;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
 // import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.toSet;
 import java.util.*;
 
 // import model.Sprite;
@@ -16,6 +14,7 @@ import stairs.*;
 
 
 import border.*;
+import child.Child;
 
 // generates random stairs
 import java.util.Random;
@@ -24,7 +23,7 @@ import java.util.Random;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class World {
-    private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
+    private final List<Sprite> players = new CopyOnWriteArrayList<>();
     private final List<Stair> stairs = new CopyOnWriteArrayList<>();
     private StairGenerator generator;
     // private final CollisionHandler collisionHandler;
@@ -35,15 +34,16 @@ public class World {
     private int levelCount = 0;
     // set seed = 0 for debugging
 
-    // public World(CollisionHandler collisionHandler, Sprite... sprites) {
+    // public World(CollisionHandler collisionHandler, Sprite... players) {
   
-    public World(ArrayList<Sprite> spriteList, ArrayList<Stair> stairs, int height, int width, ArrayList<Border> borders) {
+    public World(int playernum, ArrayList<Stair> stairs, int height, int width, ArrayList<Border> borders) {
         this.height = height;
         this.width = width;
         this.borders = borders;
-        for (int i = 0; i < spriteList.size(); i++){
-            this.sprites.add(spriteList.get(i));
-            spriteList.get(i).setWorld(this);
+        for (int i = 0; i < playernum; i++){
+            Sprite player = new Child(new Point(200, 100));
+            this.players.add(player);
+            players.get(i).setWorld(this);
         }
         for (int i = 0; i < stairs.size(); i++){
             this.stairs.add(stairs.get(i));
@@ -71,14 +71,14 @@ public class World {
             stairs.add(generator.getStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy)));
         }
 
-        for (Sprite from : sprites){
+        for (Sprite from : players){
             from.update();
         }
         for (Stair stair : stairs){
             stair.update();
         }
 
-        for (Sprite from : sprites) {
+        for (Sprite from : players) {
             Rectangle body = from.getBody();
             Point originalLocation = new Point(from.getLocation());
 
@@ -96,7 +96,7 @@ public class World {
         }        
     }
     public void removeSprite(Sprite sprite) {
-        sprites.remove(sprite);
+        players.remove(sprite);
         sprite.setWorld(null);
     }
 
@@ -104,38 +104,28 @@ public class World {
         from.getLocation().translate(offset.width, offset.height);
         Point originalLocation = new Point(from.getLocation());
         Rectangle body = from.getBody();
-        for (Sprite to : sprites) {
+        for (Sprite to : players) {
             if (to != from && body.intersects(to.getBody())) {
-
                 to.collisionHandle(originalLocation, from, to);
-                // else if (from instanceof Stair)
-                //     from.collisionHandle(originalLocation, from, to);
-                // else if (to instanceof Stair)
-                //     to.collisionHandle(originalLocation, to, from);
-                // to.collisionHandle(originalLocation, from, to);
             }
         }
 
     }
 
-    public Collection<Sprite> getSprites(Rectangle area) {
-        return sprites.stream()
-                .filter(s -> area.intersects(s.getBody()))
-                .collect(toSet());
+    public Sprite getPlayer(int index) {
+        return players.get(index);
     }
 
-    public List<Sprite> getSprites() {
-        return sprites;
+    public List<Sprite> getPlayers() {
+        return players;
     }
 
     public int getLevelCount() {
         return levelCount;
     }
 
-    // Actually, directly couple your model with the class "java.awt.Graphics" is not a good design
-    // If you want to decouple them, create an interface that encapsulates the variation of the Graphics.
     public void render(Graphics g) {
-        for (Sprite sprite : sprites) {
+        for (Sprite sprite : players) {
             sprite.render(g);
         }
         for (Stair stair : stairs){

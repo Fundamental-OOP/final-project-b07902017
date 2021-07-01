@@ -170,10 +170,8 @@ public class GameView extends JFrame {
                 ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
                 ArrayList<Stair> stairs = new ArrayList<Stair>();
                 stairs.add(new NormalStair(new Point(200, 300), 1));
-                ArrayList<Sprite> players = new ArrayList<Sprite>();
-                players.add(new Child(new Point(200, 100)));
-                World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
-                Game newGame = new Game(world, players, stairs, false);
+                World world = new World(1, stairs, HEIGHT, WIDTH, borders);  // model
+                Game newGame = new Game(world, stairs, false);
                 Canvas newCanvas = new Canvas();
                 newGame.setView(newCanvas);
                 newCanvas.add(scoreboard1);
@@ -198,11 +196,8 @@ public class GameView extends JFrame {
                 ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
                 ArrayList<Stair> stairs = new ArrayList<Stair>();
                 stairs.add(new NormalStair(new Point(200, 300), 1));
-                ArrayList<Sprite> players = new ArrayList<Sprite>();
-                players.add(new Child(new Point(200, 100)));
-                players.add(new Child(new Point(200, 100)));
-                World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
-                Game newGame = new Game(world, players, stairs, false);
+                World world = new World(2, stairs, HEIGHT, WIDTH, borders);  // model
+                Game newGame = new Game(world, stairs, false);
                 Canvas newCanvas = new Canvas();
                 newCanvas.add(scoreboard1);
                 newCanvas.add(scoreboard2);
