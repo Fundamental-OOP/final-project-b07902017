@@ -138,6 +138,12 @@ public class GameView extends JFrame {
 
     public void launch() {
         // GUI Stuff
+        setTitle("小朋友下樓梯");
+        // canvas.setLayout(new GridLayout(3, 3, 50, 50));
+        // JLabel jlabel = new JLabel("小朋友下樓梯");
+        // jlabel.setFont(new Font("Verdana",1,20));
+        // canvas.add(jlabel);
+
         CardLayout card = new CardLayout();
         JPanel canvases = new JPanel(card);
         JButton btn1 = new JButton("1 player");
@@ -179,8 +185,8 @@ public class GameView extends JFrame {
                 newGame.setView(newCanvas);
                 game = newGame;
                 newGame.start();
-                canvases.add("1 player", newCanvas);
-                card.show(canvases, "1 player");
+                canvases.add("2 player", newCanvas);
+                card.show(canvases, "2 player");
                 setKeyAdapter();
                 requestFocus();
             }
