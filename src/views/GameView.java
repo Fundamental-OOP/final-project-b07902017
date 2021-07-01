@@ -3,6 +3,7 @@ package views;
 import controller.Game;
 import controller.GameLoop;
 import model.Direction;
+import model.HealthPointSprite;
 import model.World;
 
 import javax.swing.*;
@@ -28,13 +29,18 @@ public class GameView extends JFrame {
     public static final int P0 = 0;
     public static final int P1 = 1;
     public static final int P2 = 2;
+    private int numPlayer;
 
     private final Canvas canvas = new Canvas();
     private Game game;
 
+    private int score1, score2;
+
     public GameView(Game game) throws HeadlessException {
         this.game = game;
         game.setView(canvas);
+        this.numPlayer = game.numPlayer();
+        score1 = score2 = 0;
     }
 
     public GameView(Game game, int height, int width) throws HeadlessException {
@@ -42,7 +48,8 @@ public class GameView extends JFrame {
         GameView.WIDTH = width;
         this.game = game;
         game.setView(canvas);
-    
+        this.numPlayer = game.numPlayer();
+        score1 = score2 = 0;
     }
 
     public static ArrayList <Border> setBorders(int height, int width) {
@@ -145,6 +152,7 @@ public class GameView extends JFrame {
         Font font = new Font("Verdana",1,64);
         jlabel.setFont(font);
         jlabel.setForeground(Color.LIGHT_GRAY);
+        
         GridBagConstraints cons1 = new GridBagConstraints();
         cons1.gridx = 0;
         cons1.gridy = 0;
@@ -156,12 +164,35 @@ public class GameView extends JFrame {
         cons3.gridy = 2;
         canvas.add(jlabel, cons1);
 
+        GridBagConstraints cons4 = new GridBagConstraints();
+        cons4.gridx = 0;
+        cons4.gridy = 3;
+        GridBagConstraints cons5 = new GridBagConstraints();
+        cons5.gridx = 0;
+        cons5.gridy = 4;
+        JLabel scoreboard1 = new JLabel("Player 1's score: 0");
+        JLabel scoreboard2 = new JLabel("Player 2's score: 0");
+        JLabel historyScoreboard1 = new JLabel("Player 1's score: " + Integer.toString(score1));
+        JLabel historyScoreboard2 = new JLabel("Player 2's score: " + Integer.toString(score2));
+        scoreboard1.setFont(new Font("Verdana",1,20));
+        scoreboard1.setForeground(Color.LIGHT_GRAY);
+        scoreboard2.setFont(new Font("Verdana",1,20));
+        scoreboard2.setForeground(Color.LIGHT_GRAY);
+        historyScoreboard1.setFont(new Font("Verdana",1,20));
+        historyScoreboard1.setForeground(Color.LIGHT_GRAY);
+        historyScoreboard2.setFont(new Font("Verdana",1,20));
+        historyScoreboard2.setForeground(Color.LIGHT_GRAY);
+        canvas.add(historyScoreboard1, cons4);
+        canvas.add(historyScoreboard2, cons5);
+
         CardLayout card = new CardLayout();
         JPanel canvases = new JPanel(card);
         JButton btn1 = new JButton(" 1 player ");
         btn1.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
+                score1 = score2 = 0;
+                scoreboard1.setText("Player 1's score: 0");
                 ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
                 ArrayList<Stair> stairs = new ArrayList<Stair>();
                 stairs.add(new NormalStair(new Point(200, 300), 1));
@@ -171,7 +202,9 @@ public class GameView extends JFrame {
                 Game newGame = new Game(world, players, stairs, false);
                 Canvas newCanvas = new Canvas();
                 newGame.setView(newCanvas);
+                newCanvas.add(scoreboard1);
                 game = newGame;
+                numPlayer = 1;
                 newGame.start();
                 canvases.add("1 player", newCanvas);
                 card.show(canvases, "1 player");
@@ -185,6 +218,9 @@ public class GameView extends JFrame {
         btn2.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
+                score1 = score2 = 0;
+                scoreboard1.setText("Player 1's score: 0");
+                scoreboard2.setText("Player 2's score: 0");
                 ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
                 ArrayList<Stair> stairs = new ArrayList<Stair>();
                 stairs.add(new NormalStair(new Point(200, 300), 1));
@@ -194,11 +230,15 @@ public class GameView extends JFrame {
                 World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
                 Game newGame = new Game(world, players, stairs, false);
                 Canvas newCanvas = new Canvas();
+                newCanvas.add(scoreboard1);
+                newCanvas.add(scoreboard2);
                 newGame.setView(newCanvas);
+                numPlayer = 2;
                 game = newGame;
                 newGame.start();
                 canvases.add("2 players", newCanvas);
                 card.show(canvases, "2 players");
+                
                 setKeyAdapter();
                 requestFocus();
             }
@@ -217,12 +257,27 @@ public class GameView extends JFrame {
                 // System.out.println(this.game.isEnd());)
                 try{
                     Thread.sleep(500);
+                    if(numPlayer >= 1) {
+                        scoreboard1.setText(
+                            "Player 1's score: "
+                            + Integer.toString(game.getPlayer(P0).score)
+                        );
+                        score1 = game.getPlayer(P0).score;
+                    }
+                    if(numPlayer >= 2) {
+                        scoreboard2.setText("Player 2's score: "
+                            + Integer.toString(game.getPlayer(P1).score));
+                        score2 = game.getPlayer(P1).score;
+                    }
+                    
                 }catch(Exception e) {
 
                 }
             }while(!this.game.isEnd());
             this.game.stop();
             card.show(canvases, "menu");
+            historyScoreboard1.setText("Player 1's score: "+Integer.toString(score1));
+            historyScoreboard2.setText("Player 2's score: "+Integer.toString(score2));
             this.game = menu;
         }
     }

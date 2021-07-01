@@ -15,6 +15,7 @@ public abstract class HealthPointSprite extends Sprite {
     protected double speed;
     
     protected HealthPointBar hpBar;
+    public int score;
 
     public HealthPointSprite(int hp) {
         this.hpBar = new HealthPointBar(hp);
@@ -59,6 +60,7 @@ public abstract class HealthPointSprite extends Sprite {
     }
     @Override
     public void update() {
+        this.score = this.world.getLevelCount();
         this.location.translate(0, (int) speed);
         if (speed < speedlimit) 
             speed += acceleration;

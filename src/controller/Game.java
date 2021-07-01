@@ -18,7 +18,6 @@ public class Game extends GameLoop {
     private ArrayList<Stair> stairs;
     private final World world;
     private boolean isMenu;
-    private int score1, score2;
 
     public Game(World world, ArrayList<Sprite> players, ArrayList<Stair> stairs, boolean isMenu) {
         this.players = new ArrayList<Sprite>();
@@ -77,6 +76,10 @@ public class Game extends GameLoop {
         if(!isMenu && getWorld().getSprites().size() == 0)
             return true;
         return false;
+    }
+
+    public int numPlayer() {
+        return players.size();
     }
 
     @Override
