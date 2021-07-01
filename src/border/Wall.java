@@ -22,7 +22,7 @@ public class Wall extends Border {
     public enum Type{
         LEFT, RIGHT;
     }
-    @Override
+    
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
         if (from instanceof Border && to instanceof HealthPointSprite) {
             Rectangle body = from.getBody();

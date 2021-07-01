@@ -14,7 +14,7 @@ public class Floor extends Border {
             new Dimension(width, y2 - y1)
         ));
     }
-    @Override
+
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
         if (from instanceof Border && to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;

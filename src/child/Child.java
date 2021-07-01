@@ -34,9 +34,6 @@ public class Child extends HealthPointSprite {
     public Child(Point location) {
         super(CHILD_HP);
         this.location = location;
-        // public SpriteShape(Dimension size, Dimension bodyOffset, Dimension bodySize) {
-        // shape = new SpriteShape(new Dimension(146, 176),
-        //         new Dimension(33, 38), new Dimension(66, 105));
         shape = new SpriteShape(new Dimension(40, 50),
                 new Dimension(0, 0), new Dimension(40, 50));
         fsm = new FiniteStateMachine();
@@ -51,8 +48,11 @@ public class Child extends HealthPointSprite {
         fsm.addTransition(from(idle).when(WALK).to(walking));
         fsm.addTransition(from(walking).when(STOP).to(idle));
     }
-
-    public void move(Direction direction) {
+    public void realyMove(Direction direction) {
+        Dimension offset = direction.translate();
+        getLocation().translate(offset.width, offset.height);
+}
+    public void showMove(Direction direction) {
         if (direction == Direction.LEFT || direction == Direction.RIGHT) {
             face = direction;
         }
@@ -60,6 +60,7 @@ public class Child extends HealthPointSprite {
             this.directions.add(direction);
             fsm.trigger(WALK);
         }
+        
     }
 
     public void stop(Direction direction) {
@@ -109,7 +110,6 @@ public class Child extends HealthPointSprite {
         return shape.bodySize;
     }
 
-    @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
         // System.out.printf("collision22\n");
         if (from instanceof HealthPointSprite && to instanceof HealthPointSprite) {
@@ -124,7 +124,4 @@ public class Child extends HealthPointSprite {
 
         }
     }
-
-
-
 }

@@ -1,12 +1,13 @@
 package stairs;
 
+import model.CollisionHandler;
 import model.HealthPointSprite;
 import model.Sprite;
 import model.SpriteShape;
 // import fsm.ImageRenderer;
 import java.awt.*;
 
-public abstract class Stair extends Sprite{
+public abstract class Stair extends Sprite implements CollisionHandler{
     private final SpriteShape shape;
     private int width;
     private int height;

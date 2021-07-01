@@ -71,17 +71,21 @@ public class World {
             stairs.add(generator.getStair(new Point(x, stairs.get(stairs.size()-1).getY() + dy)));
         }
 
-        for (Sprite from : players){
-            from.update();
-        }
         for (Stair stair : stairs){
             stair.update();
         }
 
         for (Sprite from : players) {
+            from.update();
             Rectangle body = from.getBody();
             Point originalLocation = new Point(from.getLocation());
 
+            for (Sprite to : players){
+                if (to != from && body.intersects(to.getBody())){
+                    ((Child) to).collisionHandle(originalLocation, to, from);
+                }
+            }
+            
             for (Stair stair : stairs){
                 if (body.intersects(stair.getBody())){
                     stair.collisionHandle(originalLocation, stair, from);
@@ -100,17 +104,16 @@ public class World {
         sprite.setWorld(null);
     }
 
-    public void move(Sprite from, Dimension offset) {
-        from.getLocation().translate(offset.width, offset.height);
-        Point originalLocation = new Point(from.getLocation());
-        Rectangle body = from.getBody();
-        for (Sprite to : players) {
-            if (to != from && body.intersects(to.getBody())) {
-                to.collisionHandle(originalLocation, from, to);
-            }
-        }
-
-    }
+    // public void move(Sprite from, Dimension offset) {
+    //     from.getLocation().translate(offset.width, offset.height);
+    //     Point originalLocation = new Point(from.getLocation());
+    //     Rectangle body = from.getBody();
+    //     for (Sprite to : players) {
+    //         if (to != from && body.intersects(to.getBody())) {
+    //             ((Child)to).collisionHandle(originalLocation, from, to);
+    //         }
+    //     }
+    // }
 
     public Sprite getPlayer(int index) {
         return players.get(index);

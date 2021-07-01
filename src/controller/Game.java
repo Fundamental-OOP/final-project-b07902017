@@ -34,7 +34,7 @@ public class Game extends GameLoop {
     public void moveChild(int playerNumber, Direction direction) {
         HealthPointSprite sprite = getPlayer(playerNumber);
         if(sprite instanceof Child)
-            ((Child) sprite).move(direction);
+            ((Child) sprite).showMove(direction);
     }
 
     public void stopChild(int playerNumber, Direction direction) {

@@ -13,9 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import border.*;
-import child.*;
 import stairs.*;
-import model.Sprite;
 import java.io.File;
 import javax.imageio.*;
 

@@ -1,10 +1,11 @@
 package border;
 
+import model.CollisionHandler;
 import model.Sprite;
 import java.awt.*;
 import model.SpriteShape;
 
-public abstract class Border extends Sprite {
+public abstract class Border extends Sprite implements CollisionHandler{
     private final Point location;
     private final SpriteShape shape;
     public Border(Point location, SpriteShape shape) {

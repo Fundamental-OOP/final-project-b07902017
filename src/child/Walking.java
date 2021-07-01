@@ -24,11 +24,21 @@ public class Walking extends CyclicSequence {
         if (child.isAlive()) {
             super.update();
             for (Direction direction : child.getDirections()) {
-                child.getWorld().move(child, direction.translate());
+                // child.getWorld().move(child, direction.translate());
+                child.realyMove(direction);
             }
         }
     }
 
+
+    //     from.getLocation().translate(offset.width, offset.height);
+    //     Point originalLocation = new Point(from.getLocation());
+    //     Rectangle body = from.getBody();
+    //     for (Sprite to : players) {
+    //         if (to != from && body.intersects(to.getBody())) {
+    //             to.collisionHandle(originalLocation, from, to);
+    //         }
+    //     }
     @Override
     public String toString() {
         return "Walking";

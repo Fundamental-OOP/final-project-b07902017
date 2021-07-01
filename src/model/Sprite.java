@@ -74,5 +74,5 @@ public abstract class Sprite {
         return world != null;
     }
 
-    public abstract void collisionHandle(Point originalLocation, Sprite from, Sprite to);
+    // public abstract void collisionHandle(Point originalLocation, Sprite from, Sprite to);
 }
