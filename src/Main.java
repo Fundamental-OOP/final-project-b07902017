@@ -10,7 +10,6 @@ import java.io.File;
 import static media.AudioPlayer.addAudioByFilePath;
 
 import java.util.*; 
-import model.Sprite;
 
 import stairs.*;
 import border.*;
@@ -53,7 +52,6 @@ public class Main {
         // 這邊其實是加方塊不是家player
         ArrayList<Stair> stairs = new ArrayList<Stair>();
         stairs.add(new NormalStair(new Point(200, 300), 1));
-
 
         World world = new World(0, stairs, height, width, borders);  // model
         Game game = new Game(world, stairs, true);  // controller

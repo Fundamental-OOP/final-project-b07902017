@@ -33,8 +33,6 @@ public class World {
     private List <Border> borders;
     private int levelCount = 0;
     // set seed = 0 for debugging
-
-    // public World(CollisionHandler collisionHandler, Sprite... players) {
   
     public World(int playernum, ArrayList<Stair> stairs, int height, int width, ArrayList<Border> borders) {
         this.height = height;
