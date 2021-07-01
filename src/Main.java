@@ -1,8 +1,5 @@
 import controller.Game;
 
-import knight.Walking;
-import knight.Attacking;
-
 import model.HealthPointSprite;
 import model.World;
 import views.GameView;
@@ -16,15 +13,10 @@ import java.util.*;
 import model.Sprite;
 
 import stairs.*;
-
 import border.*;
-
 import javax.imageio.ImageIO;
 
-import child.Child;
-
 /**
- * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Main {
@@ -51,16 +43,10 @@ public class Main {
         return borders;
     }
     public static void main(String[] args) {
-        addAudioByFilePath(Walking.AUDIO_STEP1, new File("assets/audio/step1.wav"));
-        addAudioByFilePath(Walking.AUDIO_STEP2, new File("assets/audio/step2.wav"));
-        addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_1, new File("assets/audio/sword-clash1.wav"));
-        addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_2, new File("assets/audio/sword-clash2.wav"));
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
         ArrayList<Sprite> players = new ArrayList<Sprite>();
-        // players.add(new Child(new Point(200, 100)));
-        
         int height = 800;
         int width = 800;
         ArrayList <Border> borders = setBorders(height, width);

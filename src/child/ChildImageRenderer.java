@@ -19,7 +19,7 @@ public class ChildImageRenderer implements ImageRenderer {
     public void render(Image image, Graphics g) {
         Direction face = child.getFace();
         Rectangle range = child.getRange();
-        Rectangle body = child.getBody();
+        // Rectangle body = child.getBody();
         if (face == Direction.LEFT) {
             g.drawImage(image, range.x + range.width, range.y, -range.width, range.height, null);
         } else {

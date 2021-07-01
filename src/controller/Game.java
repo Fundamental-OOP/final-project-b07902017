@@ -1,6 +1,5 @@
 package controller;
 
-import knight.Knight;
 import child.Child;
 import model.Direction;
 import model.World;
@@ -32,24 +31,6 @@ public class Game extends GameLoop {
         this.isMenu = isMenu;
     }
 
-    public void moveKnight(int playerNumber, Direction direction) {
-        HealthPointSprite sprite = getPlayer(playerNumber);
-        if(sprite instanceof Knight)
-            ((Knight) sprite).move(direction);
-    }
-
-    public void stopKnight(int playerNumber, Direction direction) {
-        HealthPointSprite sprite = getPlayer(playerNumber);
-        if(sprite instanceof Knight)
-            ((Knight) sprite).stop(direction);
-    }
-
-    public void attack(int playerNumber) {
-        HealthPointSprite sprite = getPlayer(playerNumber);
-        if(sprite instanceof Knight)
-            ((Knight) sprite).attack();
-    }
-
     public void moveChild(int playerNumber, Direction direction) {
         HealthPointSprite sprite = getPlayer(playerNumber);
         if(sprite instanceof Child)
@@ -61,11 +42,6 @@ public class Game extends GameLoop {
         if(sprite instanceof Child)
             ((Child) sprite).stop(direction);
     }
-
-
-    // public Knight getPlayer(int playerNumber) {
-    //     return playerNumber == 1 ? p1 : p2;
-    // }
 
     public HealthPointSprite getPlayer(int playerNumber) {
         // return playerNumber == 1 ? players.get(0) : players.get(1);

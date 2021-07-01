@@ -12,7 +12,7 @@ public class StairGenerator {
     
     public StairGenerator(List<Stair> stairs){
         this.candidates = stairs;
-        int[] pos = {5,2,1,1,1,1};
+        int[] pos = {5,2,1,1,1,1}; // possibility of six kinds of stairs
         setpossibility(pos);
     }
 

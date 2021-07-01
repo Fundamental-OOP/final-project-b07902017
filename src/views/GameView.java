@@ -3,7 +3,6 @@ package views;
 import controller.Game;
 import controller.GameLoop;
 import model.Direction;
-import model.HealthPointSprite;
 import model.World;
 
 import javax.swing.*;
@@ -82,31 +81,18 @@ public class GameView extends JFrame {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
-                        game.moveKnight(P0, Direction.LEFT);
                         game.moveChild(P0, Direction.LEFT);
                         break;
                     case KeyEvent.VK_RIGHT:
-                        game.moveKnight(P0, Direction.RIGHT);
                         game.moveChild(P0, Direction.RIGHT);
                         break;    
 
                     case KeyEvent.VK_A:
-                        game.moveKnight(P1, Direction.LEFT);
                         game.moveChild(P1, Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.moveKnight(P1, Direction.RIGHT);
                         game.moveChild(P1, Direction.RIGHT);
                         break;
-
-                    // case KeyEvent.VK_J:
-                    //     game.moveKnight(P2, Direction.LEFT);
-                    //     game.moveChild(P2, Direction.LEFT);
-                    //     break;
-                    // case KeyEvent.VK_L:
-                    //     game.moveKnight(P2, Direction.RIGHT);
-                    //     game.moveChild(P2, Direction.RIGHT);
-                    //     break;
                 }
             }
 
@@ -114,30 +100,18 @@ public class GameView extends JFrame {
             public void keyReleased(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
-                        game.stopKnight(P0, Direction.LEFT);
                         game.stopChild(P0, Direction.LEFT);
                         break;
                     case KeyEvent.VK_RIGHT:
-                        game.stopKnight(P0, Direction.RIGHT);
                         game.stopChild(P0, Direction.RIGHT);
                         break;  
 
                     case KeyEvent.VK_A:
-                        game.stopKnight(P1, Direction.LEFT);
                         game.stopChild(P1, Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.stopKnight(P1, Direction.RIGHT);
                         game.stopChild(P1, Direction.RIGHT);
                         break;
-                    // case KeyEvent.VK_J:
-                    //     game.stopKnight(P2, Direction.LEFT);
-                    //     game.stopChild(P2, Direction.LEFT);
-                    //     break;
-                    // case KeyEvent.VK_L:
-                    //     game.stopKnight(P2, Direction.RIGHT);
-                    //     game.stopChild(P2, Direction.RIGHT);
-                    //     break;
                 }
             }
         });
