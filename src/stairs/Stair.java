@@ -40,11 +40,8 @@ public abstract class Stair extends Sprite implements CollisionHandler{
         return shape.bodySize;
     }
 
-    @Override 
-    public void onHealed(Rectangle damageArea, int heal){}
-
     @Override
-    public void onDamaged(Rectangle damageArea, int damage){}
+    public void onDamaged(int damage){}
 
     @Override
     public void render(Graphics g) {
