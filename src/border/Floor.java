@@ -15,8 +15,8 @@ public class Floor extends Border {
         ));
     }
 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
-        if (from instanceof Border && to instanceof HealthPointSprite) {
+    public void collisionHandle(Point originalLocation, Sprite to) {
+        if (to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             tmp.onDamaged(Integer.MAX_VALUE);
         }

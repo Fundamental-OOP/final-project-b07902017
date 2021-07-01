@@ -44,14 +44,14 @@ public class Fake extends Stair {
     }
 
     @Override 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
+    public void collisionHandle(Point originalLocation, Sprite to){
         this.touchedFlag = true;
         if (remaintime >=0){
-            super.collisionHandle(originalLocation, from, to);
-            if (from instanceof Stair && to instanceof HealthPointSprite) {
+            super.collisionHandle(originalLocation, to);
+            if (to instanceof HealthPointSprite) {
                 HealthPointSprite tmp = (HealthPointSprite) to;
                 Dimension size = to.getBodySize();
-                if (!touched.contains(tmp) && to.getLocation().y + size.height - from.getLocation().y < 10) {
+                if (!touched.contains(tmp) && to.getLocation().y + size.height - getLocation().y < 10) {
                     tmp.onHealed(heal);
                     touched.add(tmp);
                 }

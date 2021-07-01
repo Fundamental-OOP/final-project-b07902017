@@ -23,9 +23,9 @@ public class Wall extends Border {
         LEFT, RIGHT;
     }
     
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        if (from instanceof Border && to instanceof HealthPointSprite) {
-            Rectangle body = from.getBody();
+    public void collisionHandle(Point originalLocation, Sprite to){
+        if (to instanceof HealthPointSprite) {
+            Rectangle body = getBody();
             int offsetLeft = to.getX() - body.x;
             int offsetRight = body.x + body.width - to.getX();
             if (type == Type.RIGHT) {

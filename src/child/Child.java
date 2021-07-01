@@ -110,10 +110,10 @@ public class Child extends HealthPointSprite {
         return shape.bodySize;
     }
 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
+    public void collisionHandle(Point originalLocation, Sprite to){
         // System.out.printf("collision22\n");
-        if (from instanceof HealthPointSprite && to instanceof HealthPointSprite) {
-            Rectangle body = from.getBody();
+        if (to instanceof HealthPointSprite) {
+            Rectangle body = getBody();
             int offsetLeft = to.getX() - body.x;
             int offsetRight = body.x + body.width - to.getX();
             if (offsetLeft < 0) {

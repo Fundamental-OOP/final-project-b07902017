@@ -27,12 +27,12 @@ public class NormalStair extends Stair {
         g.drawImage(image, location.x, location.y, null);
     }
     @Override 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        super.collisionHandle(originalLocation, from, to);
-        if (from instanceof Stair && to instanceof HealthPointSprite) {
+    public void collisionHandle(Point originalLocation, Sprite to){
+        super.collisionHandle(originalLocation, to);
+        if (to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
-            if (!touched.contains(tmp) && to.getLocation().y + size.height - from.getLocation().y < 10) {
+            if (!touched.contains(tmp) && to.getLocation().y + size.height - getLocation().y < 10) {
                 tmp.onHealed(heal);
                 touched.add(tmp);
             }

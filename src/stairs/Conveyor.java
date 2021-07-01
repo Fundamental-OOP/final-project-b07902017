@@ -35,12 +35,12 @@ public class Conveyor extends Stair {
         g.drawImage(selectImage(direction), location.x, location.y, null);
     }
     @Override 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        super.collisionHandle(originalLocation, from, to);
-        if (from instanceof Stair && to instanceof HealthPointSprite) {
+    public void collisionHandle(Point originalLocation, Sprite to){
+        super.collisionHandle(originalLocation, to);
+        if (to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             Dimension size = to.getBodySize();
-            if ( to.getLocation().y + size.height - from.getLocation().y < 10) {
+            if ( to.getLocation().y + size.height - getLocation().y < 10) {
                 to.setLocation(new Point(to.getLocation().x + direction*speed, to.getLocation().y-1));
                 if (!touched.contains(tmp)){
                     tmp.onHealed(heal);

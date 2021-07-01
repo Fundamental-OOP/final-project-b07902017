@@ -24,12 +24,11 @@ public class Walking extends CyclicSequence {
         if (child.isAlive()) {
             super.update();
             for (Direction direction : child.getDirections()) {
-                // child.getWorld().move(child, direction.translate());
                 child.realyMove(direction);
             }
         }
     }
-    
+
     @Override
     public String toString() {
         return "Walking";

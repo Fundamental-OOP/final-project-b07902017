@@ -27,7 +27,6 @@ public class World {
     private final List<Stair> stairs = new CopyOnWriteArrayList<>();
     private StairGenerator generator;
     // private final CollisionHandler collisionHandler;
-    private int height = 800;
     private int width = 800;
     private Random r1 = new Random(System.currentTimeMillis());
     private List <Border> borders;
@@ -35,7 +34,6 @@ public class World {
     // set seed = 0 for debugging
   
     public World(int playernum, ArrayList<Stair> stairs, int height, int width, ArrayList<Border> borders) {
-        this.height = height;
         this.width = width;
         this.borders = borders;
         for (int i = 0; i < playernum; i++){
@@ -60,8 +58,6 @@ public class World {
                 int[] pos = {50+3*l,20+5*l,10+l,10+l,10+l,10+l};
                 generator.setpossibility(pos);
             }
-
-            
         }
         while(stairs.size() < 20) {
             int dy = 50 + r1.nextInt(30);
@@ -80,19 +76,19 @@ public class World {
 
             for (Child to : players){
                 if (to != from && body.intersects(to.getBody())){
-                     to.collisionHandle(originalLocation, to, from);
+                     to.collisionHandle(originalLocation, from);
                 }
             }
             
             for (Stair stair : stairs){
                 if (body.intersects(stair.getBody())){
-                    stair.collisionHandle(originalLocation, stair, from);
+                    stair.collisionHandle(originalLocation, from);
                 }
             }
 
             for(Border border:borders) {
                 if (body.intersects(border.getBody())){
-                    border.collisionHandle(originalLocation, border, from);
+                    border.collisionHandle(originalLocation, from);
                 }
             }
         }        

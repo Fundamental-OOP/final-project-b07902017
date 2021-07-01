@@ -25,11 +25,11 @@ public class Trampoline extends Stair {
         g.drawImage(image, location.x, location.y, null);
     }
     @Override 
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
+    public void collisionHandle(Point originalLocation, Sprite to){
 
         HealthPointSprite tmp = (HealthPointSprite) to;
         Dimension size = to.getBodySize();
-        if (to.getLocation().y + size.height - from.getLocation().y < 10) {
+        if (to.getLocation().y + size.height - getLocation().y < 10) {
             tmp.onHealed(heal);
             tmp.setLocation(new Point(tmp.getLocation().x, this.location.y - ((HealthPointSprite) tmp).getSize().height-10));
             tmp.setspeed(force);

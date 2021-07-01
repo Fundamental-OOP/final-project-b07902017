@@ -26,11 +26,12 @@ public class Ceiling extends Border {
         for(int i = 0; i * image.getWidth(null) < width; i++)
         g.drawImage(image, (int)location.getX() + i * image.getWidth(null), (int)location.getY(), null);
     }
-    public void collisionHandle(Point originalLocation, Sprite from, Sprite to) {
-        if (from instanceof Border && to instanceof HealthPointSprite) {
+    public void collisionHandle(Point originalLocation, Sprite to) {
+        if (to instanceof HealthPointSprite) {
             HealthPointSprite tmp = (HealthPointSprite) to;
             tmp.onDamaged(damage);
-            Rectangle body = from.getBody();
+            
+            Rectangle body = getBody();
             to.setLocation(new Point(to.getX(), body.y + body.height + 10));
             tmp.setspeed(3);
         }
