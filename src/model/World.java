@@ -26,11 +26,11 @@ import java.util.Random;
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
     private final List<Stair> stairs = new CopyOnWriteArrayList<>();
-    private final StairGenerator generator;
+    private StairGenerator generator;
     // private final CollisionHandler collisionHandler;
     private int height = 800;
     private int width = 800;
-    private Random r1 = new Random(0);
+    private Random r1 = new Random(System.currentTimeMillis());
     private List <Border> borders;
     private int levelCount = 0;
     // set seed = 0 for debugging
@@ -49,17 +49,9 @@ public class World {
             this.stairs.add(stairs.get(i));
             stairs.get(i).setWorld(this);
         }
-        List<Stair> possibleStairs = new CopyOnWriteArrayList<>();
-        possibleStairs.add(new NormalStair(null, 0));
-        possibleStairs.add(new Nails(null, 0));
-        possibleStairs.add(new Trampoline(null, 0));
-        possibleStairs.add(new Fake(null, 0));
-        possibleStairs.add(new Conveyor(null, 0, 1));
-        possibleStairs.add(new Conveyor(null, 0, -1));
-        this.generator = new StairGenerator(possibleStairs);
-
+        int[] pos = {5,1,1,1,1,1};
+        this.generator = new StairGenerator(pos);
     }
-
 
     public void update() {
         while(stairs.get(0).location.getY() < -100) {

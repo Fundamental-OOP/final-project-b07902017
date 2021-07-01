@@ -8,11 +8,16 @@ import java.awt.*;
 public class StairGenerator {
     private final List<Stair> candidates;
     private List<Integer> numbers;
-    private Random r1 = new Random(0);
-    
-    public StairGenerator(List<Stair> stairs){
-        this.candidates = stairs;
-        int[] pos = {5,2,1,1,1,1}; // possibility of six kinds of stairs
+    private Random r1 = new Random(System.currentTimeMillis());
+
+    public StairGenerator(int[] pos) { // pos: the probability distribution of six kinds of stairs
+        this.candidates = new CopyOnWriteArrayList<>();
+        candidates.add(new NormalStair(null, 0));
+        candidates.add(new Nails(null, 0));
+        candidates.add(new Trampoline(null, 0));
+        candidates.add(new Fake(null, 0));
+        candidates.add(new Conveyor(null, 0, 1));
+        candidates.add(new Conveyor(null, 0, -1));
         setpossibility(pos);
     }
 

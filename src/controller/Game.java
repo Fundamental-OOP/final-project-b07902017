@@ -44,7 +44,6 @@ public class Game extends GameLoop {
     }
 
     public HealthPointSprite getPlayer(int playerNumber) {
-        // return playerNumber == 1 ? players.get(0) : players.get(1);
         return (HealthPointSprite) players.get(playerNumber);
     }
 
