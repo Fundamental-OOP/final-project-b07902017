@@ -24,8 +24,7 @@ public class HealthPointBar extends Sprite {
         this.hp = hp;
     }
 
-    @Override
-    public void onHealed(Rectangle damageArea, int heal) {
+    public void onHealed(int heal) {
         this.hp = Math.min(hp + heal, maxHp);
     }
 
@@ -43,8 +42,7 @@ public class HealthPointBar extends Sprite {
         g.fillRect(range.x, range.y, width, range.height);
     }
 
-    @Override
-    public void onDamaged(Rectangle damageArea, int damage) {
+    public void onDamaged(int damage) {
         this.hp = Math.max(hp - damage, 0);
     }
 

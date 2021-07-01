@@ -18,9 +18,7 @@ public abstract class Border extends Sprite implements CollisionHandler{
     @Override
     public void render(Graphics g){};
     @Override
-    public void onDamaged(Rectangle damageArea, int damage){};
-    @Override 
-    public void onHealed(Rectangle damageArea, int heal){};
+    public void onDamaged(int damage){};
     @Override
     public Point getLocation() {
         return location;

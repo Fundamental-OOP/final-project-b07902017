@@ -23,11 +23,11 @@ public abstract class HealthPointSprite extends Sprite {
     }
 
     public void onHealed(int heal) {
-        hpBar.onHealed(null, heal);
+        hpBar.onHealed(heal);
     }
 
     public void onDamaged(int damage) {
-        hpBar.onDamaged(null, damage);
+        hpBar.onDamaged(damage);
         if (hpBar.isDead()) {
             world.removeSprite(this);
             AudioPlayer.playSounds(AUDIO_DIE);
@@ -35,20 +35,6 @@ public abstract class HealthPointSprite extends Sprite {
     }
 
     public abstract Dimension getSize();
-
-    @Override
-    public void onHealed(Rectangle damageArea, int heal) {
-        hpBar.onHealed(damageArea, heal);
-    }
-
-    @Override
-    public void onDamaged(Rectangle damageArea, int damage) {
-        hpBar.onDamaged(damageArea, damage);
-        if (hpBar.isDead()) {
-            world.removeSprite(this);
-            AudioPlayer.playSounds(AUDIO_DIE);
-        }
-    }
 
     @Override
     public void render(Graphics g) {
