@@ -141,13 +141,24 @@ public class GameView extends JFrame {
         // GUI Stuff
         setTitle("小朋友下樓梯");
         canvas.setLayout(new GridBagLayout());
-        // JLabel jlabel = new JLabel("小朋友下樓梯");
-        // jlabel.setFont(new Font("Verdana",1,20));
-        // canvas.add(jlabel);
+        JLabel jlabel = new JLabel("小朋友下樓梯");
+        Font font = new Font("Verdana",1,64);
+        jlabel.setFont(font);
+        jlabel.setForeground(Color.LIGHT_GRAY);
+        GridBagConstraints cons1 = new GridBagConstraints();
+        cons1.gridx = 0;
+        cons1.gridy = 0;
+        GridBagConstraints cons2 = new GridBagConstraints();
+        cons2.gridx = 0;
+        cons2.gridy = 1;
+        GridBagConstraints cons3 = new GridBagConstraints();
+        cons3.gridx = 0;
+        cons3.gridy = 2;
+        canvas.add(jlabel, cons1);
 
         CardLayout card = new CardLayout();
         JPanel canvases = new JPanel(card);
-        JButton btn1 = new JButton("1 player");
+        JButton btn1 = new JButton(" 1 player ");
         btn1.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -168,7 +179,7 @@ public class GameView extends JFrame {
                 requestFocus();
             }
         });
-        canvas.add(btn1, new GridBagConstraints());
+        canvas.add(btn1, cons2);
 
         JButton btn2 = new JButton("2 players");
         btn2.addActionListener(new ActionListener(){  
@@ -192,7 +203,7 @@ public class GameView extends JFrame {
                 requestFocus();
             }
         });
-        canvas.add(btn2, new GridBagConstraints());
+        canvas.add(btn2, cons3);
 
         canvas.setSize(WIDTH, HEIGHT);
         canvases.add(canvas, "menu");

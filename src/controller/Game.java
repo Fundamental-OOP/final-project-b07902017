@@ -18,7 +18,7 @@ public class Game extends GameLoop {
     private ArrayList<Stair> stairs;
     private final World world;
     private boolean isMenu;
-    private int score;
+    private int score1, score2;
 
     public Game(World world, ArrayList<Sprite> players, ArrayList<Stair> stairs, boolean isMenu) {
         this.players = new ArrayList<Sprite>();
