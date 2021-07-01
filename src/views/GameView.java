@@ -140,7 +140,7 @@ public class GameView extends JFrame {
         Game menu = this.game;
         // GUI Stuff
         setTitle("小朋友下樓梯");
-        // canvas.setLayout(new GridLayout(3, 3, 50, 50));
+        canvas.setLayout(new GridBagLayout());
         // JLabel jlabel = new JLabel("小朋友下樓梯");
         // jlabel.setFont(new Font("Verdana",1,20));
         // canvas.add(jlabel);
@@ -168,7 +168,7 @@ public class GameView extends JFrame {
                 requestFocus();
             }
         });
-        canvas.add(btn1);
+        canvas.add(btn1, new GridBagConstraints());
 
         JButton btn2 = new JButton("2 players");
         btn2.addActionListener(new ActionListener(){  
@@ -192,7 +192,7 @@ public class GameView extends JFrame {
                 requestFocus();
             }
         });
-        canvas.add(btn2);
+        canvas.add(btn2, new GridBagConstraints());
 
         canvas.setSize(WIDTH, HEIGHT);
         canvases.add(canvas, "menu");
