@@ -23,7 +23,7 @@ import java.util.Random;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class World {
-    private final List<Sprite> players = new CopyOnWriteArrayList<>();
+    private final List<Child> players = new CopyOnWriteArrayList<>();
     private final List<Stair> stairs = new CopyOnWriteArrayList<>();
     private StairGenerator generator;
     // private final CollisionHandler collisionHandler;
@@ -41,7 +41,7 @@ public class World {
         this.width = width;
         this.borders = borders;
         for (int i = 0; i < playernum; i++){
-            Sprite player = new Child(new Point(200, 100));
+            Child player = new Child(new Point(225, 100));
             this.players.add(player);
             players.get(i).setWorld(this);
         }
@@ -75,14 +75,14 @@ public class World {
             stair.update();
         }
 
-        for (Sprite from : players) {
+        for (Child from : players) {
             from.update();
             Rectangle body = from.getBody();
             Point originalLocation = new Point(from.getLocation());
 
-            for (Sprite to : players){
+            for (Child to : players){
                 if (to != from && body.intersects(to.getBody())){
-                    ((Child) to).collisionHandle(originalLocation, to, from);
+                     to.collisionHandle(originalLocation, to, from);
                 }
             }
             
@@ -104,22 +104,11 @@ public class World {
         sprite.setWorld(null);
     }
 
-    // public void move(Sprite from, Dimension offset) {
-    //     from.getLocation().translate(offset.width, offset.height);
-    //     Point originalLocation = new Point(from.getLocation());
-    //     Rectangle body = from.getBody();
-    //     for (Sprite to : players) {
-    //         if (to != from && body.intersects(to.getBody())) {
-    //             ((Child)to).collisionHandle(originalLocation, from, to);
-    //         }
-    //     }
-    // }
-
-    public Sprite getPlayer(int index) {
+    public Child getPlayer(int index) {
         return players.get(index);
     }
 
-    public List<Sprite> getPlayers() {
+    public List<Child> getPlayers() {
         return players;
     }
 

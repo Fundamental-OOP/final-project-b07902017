@@ -3,23 +3,21 @@ package controller;
 import child.Child;
 import model.Direction;
 import model.World;
-import model.HealthPointSprite;
 
 import java.util.*;
 
-import model.Sprite;
 import stairs.Stair;
 /**
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Game extends GameLoop {
-    private ArrayList<Sprite> players;
+    private ArrayList<Child> players;
     private ArrayList<Stair> stairs;
     private final World world;
     private boolean isMenu;
 
     public Game(World world, ArrayList<Stair> stairs, boolean isMenu) {
-        this.players = new ArrayList<Sprite>();
+        this.players = new ArrayList<Child>();
         for (int i = 0; i < world.getPlayers().size(); i++)
             this.players.add(world.getPlayer(i));
 
@@ -32,19 +30,19 @@ public class Game extends GameLoop {
     }
 
     public void moveChild(int playerNumber, Direction direction) {
-        HealthPointSprite sprite = getPlayer(playerNumber);
+        Child sprite = getPlayer(playerNumber);
         if(sprite instanceof Child)
-            ((Child) sprite).showMove(direction);
+            sprite.showMove(direction);
     }
 
     public void stopChild(int playerNumber, Direction direction) {
-        HealthPointSprite sprite = getPlayer(playerNumber);
+        Child sprite = getPlayer(playerNumber);
         if(sprite instanceof Child)
-            ((Child) sprite).stop(direction);
+            sprite.stop(direction);
     }
 
-    public HealthPointSprite getPlayer(int playerNumber) {
-        return (HealthPointSprite) players.get(playerNumber);
+    public Child getPlayer(int playerNumber) {
+        return players.get(playerNumber);
     }
 
     public boolean isEnd() {
