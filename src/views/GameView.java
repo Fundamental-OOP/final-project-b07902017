@@ -140,8 +140,8 @@ public class GameView extends JFrame {
         // GUI Stuff
         CardLayout card = new CardLayout();
         JPanel canvases = new JPanel(card);
-        JButton btn = new JButton("1 player");
-        btn.addActionListener(new ActionListener(){  
+        JButton btn1 = new JButton("1 player");
+        btn1.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
@@ -161,7 +161,32 @@ public class GameView extends JFrame {
                 requestFocus();
             }
         });
-        canvas.add(btn);
+        canvas.add(btn1);
+
+        JButton btn2 = new JButton("2 player");
+        btn2.addActionListener(new ActionListener(){  
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList <Border> borders = setBorders(HEIGHT, WIDTH);
+                ArrayList<Stair> stairs = new ArrayList<Stair>();
+                stairs.add(new NormalStair(new Point(200, 300), 1));
+                ArrayList<Sprite> players = new ArrayList<Sprite>();
+                players.add(new Child(new Point(200, 100)));
+                players.add(new Child(new Point(200, 100)));
+                World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
+                Game newGame = new Game(world, players, stairs);
+                Canvas newCanvas = new Canvas();
+                newGame.setView(newCanvas);
+                game = newGame;
+                newGame.start();
+                canvases.add("1 player", newCanvas);
+                card.show(canvases, "1 player");
+                setKeyAdapter();
+                requestFocus();
+            }
+        });
+        canvas.add(btn2);
+
         canvas.setSize(WIDTH, HEIGHT);
         canvases.add(canvas, "menu");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

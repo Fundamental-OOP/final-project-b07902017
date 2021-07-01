@@ -61,7 +61,7 @@ public class Main {
 
         // initialization procedure
         ArrayList<Sprite> players = new ArrayList<Sprite>();
-        players.add(new Child(new Point(200, 100)));
+        // players.add(new Child(new Point(200, 100)));
         
         int height = 800;
         int width = 800;
