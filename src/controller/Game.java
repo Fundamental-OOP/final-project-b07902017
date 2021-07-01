@@ -20,7 +20,7 @@ public class Game extends GameLoop {
     private boolean isMenu;
     private int score;
 
-    public Game(World world, ArrayList<Sprite> players, ArrayList<Stair> stairs) {
+    public Game(World world, ArrayList<Sprite> players, ArrayList<Stair> stairs, boolean isMenu) {
         this.players = new ArrayList<Sprite>();
         for (int i = 0; i < players.size(); i++)
             this.players.add(players.get(i));
