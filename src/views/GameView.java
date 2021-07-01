@@ -51,7 +51,7 @@ public class GameView extends JFrame {
             File file = new File("assets/ceiling.png");
             Image image = ImageIO.read(file);
             Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 5, image);
-            System.out.println(image.getHeight(null));
+            // System.out.println(image.getHeight(null));
             borders.add(ceiling);
         }catch(Exception e) {}
         try{
@@ -59,7 +59,7 @@ public class GameView extends JFrame {
             Image image = ImageIO.read(file);
             Wall leftWall = new Wall(0, image.getWidth(null), width, image, Wall.Type.LEFT);
             Wall rightWall = new Wall(width - image.getWidth(null), width, width, image, Wall.Type.RIGHT);
-            System.out.println(image.getHeight(null));
+            // System.out.println(image.getHeight(null));
             borders.add(leftWall);
             borders.add(rightWall);
         }catch(Exception e) {}
@@ -92,14 +92,14 @@ public class GameView extends JFrame {
                         game.moveChild(P1, Direction.RIGHT);
                         break;
 
-                    case KeyEvent.VK_J:
-                        game.moveKnight(P2, Direction.LEFT);
-                        game.moveChild(P2, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_L:
-                        game.moveKnight(P2, Direction.RIGHT);
-                        game.moveChild(P2, Direction.RIGHT);
-                        break;
+                    // case KeyEvent.VK_J:
+                    //     game.moveKnight(P2, Direction.LEFT);
+                    //     game.moveChild(P2, Direction.LEFT);
+                    //     break;
+                    // case KeyEvent.VK_L:
+                    //     game.moveKnight(P2, Direction.RIGHT);
+                    //     game.moveChild(P2, Direction.RIGHT);
+                    //     break;
                 }
             }
 
@@ -123,14 +123,14 @@ public class GameView extends JFrame {
                         game.stopKnight(P1, Direction.RIGHT);
                         game.stopChild(P1, Direction.RIGHT);
                         break;
-                    case KeyEvent.VK_J:
-                        game.stopKnight(P2, Direction.LEFT);
-                        game.stopChild(P2, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_L:
-                        game.stopKnight(P2, Direction.RIGHT);
-                        game.stopChild(P2, Direction.RIGHT);
-                        break;
+                    // case KeyEvent.VK_J:
+                    //     game.stopKnight(P2, Direction.LEFT);
+                    //     game.stopChild(P2, Direction.LEFT);
+                    //     break;
+                    // case KeyEvent.VK_L:
+                    //     game.stopKnight(P2, Direction.RIGHT);
+                    //     game.stopChild(P2, Direction.RIGHT);
+                    //     break;
                 }
             }
         });
@@ -170,7 +170,7 @@ public class GameView extends JFrame {
         });
         canvas.add(btn1);
 
-        JButton btn2 = new JButton("2 player");
+        JButton btn2 = new JButton("2 players");
         btn2.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,8 +186,8 @@ public class GameView extends JFrame {
                 newGame.setView(newCanvas);
                 game = newGame;
                 newGame.start();
-                canvases.add("2 player", newCanvas);
-                card.show(canvases, "2 player");
+                canvases.add("2 players", newCanvas);
+                card.show(canvases, "2 players");
                 setKeyAdapter();
                 requestFocus();
             }
@@ -207,7 +207,7 @@ public class GameView extends JFrame {
                 try{
                     Thread.sleep(500);
                 }catch(Exception e) {
-                    
+
                 }
             }while(!this.game.isEnd());
             this.game.stop();
@@ -229,7 +229,7 @@ public class GameView extends JFrame {
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
             // Now, let's paint
-            g.setColor(Color.BLUE); // paint background with all white
+            g.setColor(Color.BLACK); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
 
             world.render(g); // ask the world to paint itself and paint the sprites on the canvas

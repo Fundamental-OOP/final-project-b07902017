@@ -36,7 +36,7 @@ public class Main {
             File file = new File("assets/ceiling.png");
             Image image = ImageIO.read(file);
             Ceiling ceiling = new Ceiling(0, image.getHeight(null), width, 5, image);
-            System.out.println(image.getHeight(null));
+            // System.out.println(image.getHeight(null));
             borders.add(ceiling);
         }catch(Exception e) {}
         try{
@@ -44,7 +44,7 @@ public class Main {
             Image image = ImageIO.read(file);
             Wall leftWall = new Wall(0, image.getWidth(null), width, image, Wall.Type.LEFT);
             Wall rightWall = new Wall(width - image.getWidth(null), width, width, image, Wall.Type.RIGHT);
-            System.out.println(image.getHeight(null));
+            // System.out.println(image.getHeight(null));
             borders.add(leftWall);
             borders.add(rightWall);
         }catch(Exception e) {}

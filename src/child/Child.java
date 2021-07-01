@@ -112,7 +112,7 @@ public class Child extends HealthPointSprite {
 
     @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        System.out.printf("collision22\n");
+        // System.out.printf("collision22\n");
         if (from instanceof HealthPointSprite && to instanceof HealthPointSprite) {
             Rectangle body = from.getBody();
             int offsetLeft = to.getX() - body.x;

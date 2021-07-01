@@ -128,7 +128,7 @@ public class Knight extends HealthPointSprite {
 
     @Override
     public void collisionHandle(Point originalLocation, Sprite from, Sprite to){
-        System.out.printf("collision22\n");
+        // System.out.printf("collision22\n");
         if (from instanceof Knight && to instanceof Knight) {
             Rectangle body = from.getBody();
             int offsetLeft = to.getX() - body.x;
