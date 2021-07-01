@@ -137,6 +137,7 @@ public class GameView extends JFrame {
     }
 
     public void launch() {
+        Game menu = this.game;
         // GUI Stuff
         setTitle("小朋友下樓梯");
         // canvas.setLayout(new GridLayout(3, 3, 50, 50));
@@ -156,7 +157,7 @@ public class GameView extends JFrame {
                 ArrayList<Sprite> players = new ArrayList<Sprite>();
                 players.add(new Child(new Point(200, 100)));
                 World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
-                Game newGame = new Game(world, players, stairs);
+                Game newGame = new Game(world, players, stairs, false);
                 Canvas newCanvas = new Canvas();
                 newGame.setView(newCanvas);
                 game = newGame;
@@ -180,7 +181,7 @@ public class GameView extends JFrame {
                 players.add(new Child(new Point(200, 100)));
                 players.add(new Child(new Point(200, 100)));
                 World world = new World(players, stairs, HEIGHT, WIDTH, borders);  // model
-                Game newGame = new Game(world, players, stairs);
+                Game newGame = new Game(world, players, stairs, false);
                 Canvas newCanvas = new Canvas();
                 newGame.setView(newCanvas);
                 game = newGame;
@@ -200,8 +201,19 @@ public class GameView extends JFrame {
         setSize(WIDTH, HEIGHT);
         setContentPane(canvases);
         setVisible(true);
-        setKeyAdapter();
-        requestFocus();
+        while(true) {
+            do{
+                // System.out.println(this.game.isEnd());)
+                try{
+                    Thread.sleep(500);
+                }catch(Exception e) {
+                    
+                }
+            }while(!this.game.isEnd());
+            this.game.stop();
+            card.show(canvases, "menu");
+            this.game = menu;
+        }
     }
 
     public static class Canvas extends JPanel implements GameLoop.View {

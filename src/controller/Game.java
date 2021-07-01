@@ -20,8 +20,9 @@ public class Game extends GameLoop {
     private ArrayList<Sprite> knights;
     private ArrayList<Stair> stairs;
     private final World world;
+    private boolean isMenu;
 
-    public Game(World world, ArrayList<Sprite> knights, ArrayList<Stair> stairs) {
+    public Game(World world, ArrayList<Sprite> knights, ArrayList<Stair> stairs, boolean isMenu) {
         this.knights = new ArrayList<Sprite>();
         for (int i = 0; i < knights.size(); i++)
             this.knights.add(knights.get(i));
@@ -31,6 +32,7 @@ public class Game extends GameLoop {
         this.stairs = new ArrayList<Stair>();
         for (int i = 0; i < stairs.size(); i++)
             this.stairs.add(stairs.get(i));
+        this.isMenu = isMenu;
     }
 
     // public Game(World world, Knight p1, Knight p2) {
@@ -77,6 +79,12 @@ public class Game extends GameLoop {
     public HealthPointSprite getPlayer(int playerNumber) {
         // return playerNumber == 1 ? knights.get(0) : knights.get(1);
         return (HealthPointSprite) knights.get(playerNumber);
+    }
+
+    public boolean isEnd() {
+        if(!isMenu && getWorld().getSprites().size() == 0)
+            return true;
+        return false;
     }
 
     @Override

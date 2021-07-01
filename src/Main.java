@@ -74,7 +74,7 @@ public class Main {
 
 
         World world = new World(players, stairs, height, width, borders);  // model
-        Game game = new Game(world, players, stairs);  // controller
+        Game game = new Game(world, players, stairs, true);  // controller
 
         GameView view = new GameView(game, height, width);  // view
         game.start();  // run the game and the game loop
